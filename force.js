@@ -590,6 +590,7 @@ GraphUI.prototype = {
     // draw line
     // k+factor at end determines dot frequency
     var l = 8;
+    var l = 18;
     for ( var k=0; k<l; k++ ) {
       var p = (distance['d'] / l) * k;
       var pix;

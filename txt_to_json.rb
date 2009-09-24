@@ -14,11 +14,11 @@ puts 'var nodes = {};'
 puts 'var edges = {};'
 
 
-columns = 7
+columns = 8
 lines = File.readlines('agile_methods.txt')
 lines.shift
 headers = []
-7.times { headers << lines.shift } 
+columns.times { headers << lines.shift } 
 headers.shift
 
 headers.each do |h|
@@ -29,7 +29,7 @@ headers.each do |h|
 end
 
 
-7.times { lines.shift } 
+columns.times { lines.shift } 
 lines.each_slice(columns) do |slice|
 	label = to_label(slice.shift)
 	next if label.blank?

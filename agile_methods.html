@@ -18,7 +18,6 @@
     	margin: 0;
     	padding: 0;
     }
-      @import 'style.css';
        #origin {
         position: absolute;
         width: 14px;
@@ -28,7 +27,7 @@
         font-size: 11px;
         text-align: center;
         -moz-border-radius: 14px;
-z-Index:100;
+		z-Index:100;
       }
       
       div.method {
@@ -49,6 +48,18 @@ z-Index:100;
       	background-color: darkorange;
       	color: white;
       	padding: 3px;
+      	z-index: 100;
+      	opacity: .9;
+      }
+      
+      div.legal #readme {
+        padding-left: 20px;
+      	display: none;
+      	width: 800px;
+      	overflow: auto;
+      	font-size: 14px;
+      	line-height: 20px;
+
       }
     </style>
 
@@ -56,8 +67,44 @@ z-Index:100;
   <body onload="timer.start()">
   
   	<div class="legal">
-  		Agile Software Exploration, Andrew J. Peterson.  Words taken from the most popular sources for each methodology, and "normalized". See more here.  Graphics based on <a href="http://www.kylescholz.com/blog/2006/06/force_directed_graphs_in_javas.html" target="_blank">Force Directed Graphs in Javascript?</a>
+<h1>Agile Software Exploration</h1>
+  		Words taken from the most popular sources for each methodology, and "normalized".    		
+  		<a href='#' onclick='document.getElementById("readme").style.display="block"'>See more</a>
+
+   	<div id="readme" >
+  		<h2>Methodology</h2>
+  		<p>Went to the most popular sources for the various agile software methodologies and found what was 
+  		(in my opinion), the canonical summary of it. For example, the Agile Manifesto has a one page values
+  		page and 12 principals. Some were less obvious, and I identified a chapter on lean software as my source.</p>
+  		
+  		<p>After identifying the source, I indexed the "concepts". There's lots of squishyness here, and lots of
+  		room for error and opinions to sneak in. I repeated my process on XP and agile, and got subtly different results.
+  		Not great from a scientific method point of view, but let's call it "experimental error".</p>
+  		
+  		<p>After identifying the concepts, I went through a process of "normalizing" those into what seemed like 
+  		the same concept. Again, lots of room for error. Are "sprints" the same as "iterations"? Well, I had to
+  		make lots of calls.</p>
+  		
+  		<p>Finally, I wanted to visualize this data. I looked at different options, rejected quite a few. MindMaps are
+  		neat, but don't really promote the comparison I wanted. Any sort of graph didn't work well. I finally settled
+  		upon the visual theseaurus metaphor. I actually rejected this as "flashy" and unnecessary use of software when
+  	    I first saw it, but the more I thought about it, the better fit it was.</p>
+  	    
+  	    <p>It was then a matter of finding a technology that would do this. I looked at using Processing (a Java variant
+  	    that lots of people are using to build visualizations), but thought wanted something as light weight as possible.
+  	    So Google to the rescue, and I found someone who had experimented with "force directed graphs" in Javascript. 
+  	    I grabbed the code, and threw my data in it.</p>
+  	    
+  	    <p>There was a little engineering in how I integrated this. I knew the spreadsheet would update (and I wanted to add
+  	    more methodologies potentially), so I wrote a Ruby script that takes the spreadsheet and generates Javascript. But
+  	    I wanted some leeway with the Javascript to try different approaches, so I had the Ruby script generate 
+  	    data structure. And I wrote simple Javascript that was driven off of these structures.</p>
+  	    
+  	    <p>Credits:   		Graphics based on <a href="http://www.kylescholz.com/blog/2006/06/force_directed_graphs_in_javas.html" target="_blank">Force Directed Graphs in Javascript?</a>
+</p>
   	</div>
+ 	</div>
+  	
 
     <!-- origin node -->
 
