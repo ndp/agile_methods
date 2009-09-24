@@ -56,7 +56,7 @@ z-Index:100;
   <body onload="timer.start()">
   
   	<div class="legal">
-  		Agile Software Exploration, Andrew J. Peterson.  Words taken from the most popular sources for each methodology, and "normalized". See more here.  Graphics based on <a href="http://www.kylescholz.com/projects/force/example03.html" target="_blank">force directed graph Javascript code by Kyle Scholz</a>
+  		Agile Software Exploration, Andrew J. Peterson.  Words taken from the most popular sources for each methodology, and "normalized". See more here.  Graphics based on <a href="http://www.kylescholz.com/blog/2006/06/force_directed_graphs_in_javas.html" target="_blank">Force Directed Graphs in Javascript?</a>
   	</div>
 
     <!-- origin node -->
@@ -108,19 +108,20 @@ z-Index:100;
     var control = new UserControl();
     control.initialize( timer, graph, graphui );
 
-for (n in nodes) {
-	nodes[n]['node'] = control.addNode( nodes[n].label, nodes[n].mass, nodes[n].origin, 55);
-    //graphui.getNode( nodes[n]['node'].id ).style.backgroundColor="#eeee66";
-    //graphui.getNode( nodes[n]['node'].id ).style.border="1px solid #bebe36";
-    graphui.getNode( nodes[n]['node'].id ).className=nodes[n].cssClass;
-}
 
-for (e in edges) {
-  var edge = edges[e];
-  var nodeA = nodes[edge.nodeA]['node'];
-  var nodeB = nodes[edge.nodeB]['node'];
-  control.addEdge( nodeA, nodeB, edge.weight);
-}
+	// Add nodes
+	for (n in nodes) {
+		nodes[n]['node'] = control.addNode( nodes[n].label, nodes[n].mass, nodes[n].origin, 55);
+		graphui.getNode( nodes[n]['node'].id ).className=nodes[n].cssClass;
+	}
+	
+	// Add edges
+	for (e in edges) {
+	  var edge = edges[e];
+	  var nodeA = nodes[edge.nodeA]['node'];
+	  var nodeB = nodes[edge.nodeB]['node'];
+	  control.addEdge( nodeA, nodeB, edge.weight);
+	}
 
     
     //99ee55

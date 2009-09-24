@@ -39,8 +39,8 @@ lines.each_slice(columns) do |slice|
     
     headers.each_with_index do |header, i|
     	next if slice[i].blank?
-    	wt = 80 - (slice[i].to_i * 5)
-    	wt = 10 if wt < 10
+    	wt = (slice[i].to_i * 5) + 30
+    	wt = 80 if wt > 80
     	headerk = to_var(header)
     	puts "edges['#{headerk+k}'] = { nodeA: '#{headerk}', nodeB: '#{k}', weight: #{wt}}"
     end
