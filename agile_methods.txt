@@ -1,0 +1,268 @@
+
+
+XP
+Agile Manifesto (values)
+Agile Manifesto (12 principals)
+Scrum
+Scrum (ch9)
+Lean
+
+http://www.extremeprogramming.org/
+http://agilemanifesto.org/
+http://agilemanifesto.org/principles.html
+http://en.wikipedia.org/wiki/Scrum_(development)
+Agile Software Development with Scrum, Chapter 9
+http://en.wikipedia.org/wiki/Lean_software_development
+Customer Satisfaction
+1
+
+1
+
+
+
+Teamwork
+4
+
+
+
+
+
+Equal Partners
+5
+
+
+
+
+
+Collaborators
+6
+
+
+
+
+
+High Productivity
+7
+
+
+
+
+
+Self-Organizing (Empower the team)
+8
+
+11
+9
+
+5
+Honest Planning
+9
+
+
+
+
+
+Sprint (Project Heartbeat)
+10
+
+
+6
+
+
+Simplicity (Simplification)
+12
+
+10
+
+
+
+Communication
+13
+
+
+
+
+
+Face-to-face communication (Verbal Communication; XP: Interactions over process and tools)
+
+1
+6
+11
+
+
+Courage
+14
+
+
+
+5
+
+Individuals (Motivated)
+
+1
+5
+
+
+
+Collaborate with Customers (Collaboration between Business/Dev)
+
+3
+4
+
+
+
+Respond to Change (Changing Customer Requirements,Welcome or Confidently Respond)
+3
+4
+2
+14
+
+
+Working Software (Deliver Frequently , scrum: Deliver as fast as possible, lean Working Software Delivery Quickly, xp: deliver as you need it; scrum: Scrum: Shippable Software Unit: 7, 15)
+2
+2
+3
+7
+
+4
+Sustainable Development; constant pace
+
+
+8
+
+
+
+Technical Excellence
+
+
+9
+
+
+
+Team Reflections
+
+
+12
+
+
+
+Eliminate waste
+
+
+
+
+
+1
+Feedback (Amplify learning  as in short iterations eg. TDD, dev iterations)
+11
+
+
+
+
+2
+Decide as late as possible (JIT)
+
+
+
+
+
+3
+Build integrity in
+
+
+
+
+
+6
+Holistic (“see the whole”)
+
+
+
+1
+
+7
+Overlapping Phases
+
+
+
+2
+
+
+Cross-Functional Teams
+
+
+
+3
+
+
+Practices
+
+
+
+4
+
+
+Predefined Roles
+
+
+
+5
+
+
+Backlog
+
+
+
+8
+
+
+Colocation
+
+
+
+10
+
+
+Empirical Approach
+
+
+
+12
+
+
+Easy to Learn
+
+
+
+15
+
+
+Commitment
+
+
+
+
+1
+
+Focus
+
+
+
+
+2
+
+Openness
+
+
+
+
+3
+
+Respect
+
+
+
+
+4
+
+

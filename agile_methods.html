@@ -1,0 +1,138 @@
+<html>
+  <head>
+
+    <title>Force Directed Graphing in Javascript</title>
+
+<!--    <script src="event.js"></script>
+    <script src="timer.js"></script>
+    <script src="graph.js"></script>
+
+    <script src="domui.js"></script>
+    <script src="control.js"></script>-->
+    <script src="force.js"></script>
+    <script src="agile_methods.js"></script>
+    
+
+    <style type="text/css">
+    html, body {
+    	margin: 0;
+    	padding: 0;
+    }
+      @import 'style.css';
+       #origin {
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        left:10px;
+        top:10px;
+        font-size: 11px;
+        text-align: center;
+        -moz-border-radius: 14px;
+z-Index:100;
+      }
+      
+      div.method {
+      	background-color: orange;
+      	opacity: 0.9;
+      	font-weight: bold;
+      	padding: 3px;
+      }
+      
+      div.attr, div.method {
+      	cursor: pointer;
+      }
+      
+      div.legal {
+      	position: fixed;
+      	top: 0;
+      	width: 100%;
+      	background-color: darkorange;
+      	color: white;
+      	padding: 3px;
+      }
+    </style>
+
+  </head>
+  <body onload="timer.start()">
+  
+  	<div class="legal">
+  		Agile Software Exploration, Andrew J. Peterson.  Words taken from the most popular sources for each methodology, and "normalized". See more here.  Graphics based on <a href="http://www.kylescholz.com/projects/force/example03.html" target="_blank">force directed graph Javascript code by Kyle Scholz</a>
+  	</div>
+
+    <!-- origin node -->
+
+    <div id="origin" style="font-size:18px;font-weight:bold;font-family:Verdana,sans-serif;">Agile</div>
+
+    <!-- frame -->
+    <div id="frame" style="position:absolute;top:0px;left:0px;"></div>
+
+    <script language="Javascript">
+
+    /* --------------------------- */
+
+    var FRAME_WIDTH;
+    var FRAME_HEIGHT;
+
+    if (IE) {
+      FRAME_WIDTH = document.body.offsetWidth;
+      FRAME_HEIGHT = document.body.offsetHeight;
+    } else {
+      FRAME_WIDTH = window.innerWidth;
+      FRAME_HEIGHT = window.innerHeight;
+    }
+
+    FRAME_WIDTH -= (parseInt(document.getElementById('frame').style.left)*2);
+    FRAME_HEIGHT -= (parseInt(document.getElementById('frame').style.top));
+
+    // create a timer control
+    var timer = new TimerControl();
+    timer.initialize( 1 );
+
+    var graphui=new GraphUI();
+    graphui.initialize( document.getElementById('frame'), 
+                        document.getElementById('origin'),
+                        true,
+                        true
+    );
+
+    // instantiate the graph
+    var graph=new Graph();
+    graph.initialize( FRAME_WIDTH, FRAME_HEIGHT );
+
+    // set a UI for the graph to report to
+    graph.setUI( graphui );
+
+    // subscribe the graph to the control timer
+    timer.subscribe( graph );
+
+    var control = new UserControl();
+    control.initialize( timer, graph, graphui );
+
+for (n in nodes) {
+	nodes[n]['node'] = control.addNode( nodes[n].label, nodes[n].mass, nodes[n].origin, 55);
+    //graphui.getNode( nodes[n]['node'].id ).style.backgroundColor="#eeee66";
+    //graphui.getNode( nodes[n]['node'].id ).style.border="1px solid #bebe36";
+    graphui.getNode( nodes[n]['node'].id ).className=nodes[n].cssClass;
+}
+
+for (e in edges) {
+  var edge = edges[e];
+  var nodeA = nodes[edge.nodeA]['node'];
+  var nodeB = nodes[edge.nodeB]['node'];
+  control.addEdge( nodeA, nodeB, edge.weight);
+}
+
+    
+    //99ee55
+    //eeee66
+    //ee9944
+    //6688ee
+
+    
+            
+    </script>
+
+  </body>
+
+</html>
+
