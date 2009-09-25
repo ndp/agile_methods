@@ -17,6 +17,7 @@
     html, body {
     	margin: 0;
     	padding: 0;
+    	font-family: verdana;
     }
        #origin {
         position: absolute;
@@ -28,6 +29,15 @@
         text-align: center;
         -moz-border-radius: 14px;
 		z-Index:100;
+      }
+      
+      h1 {
+		font-size: 12px;
+		padding-left: 20px;
+      }
+      p {
+		padding-left: 20px;
+		font-size: 12px;
       }
       
       div.method {
@@ -68,12 +78,13 @@
   
   	<div class="legal">
 <h1>Agile Software Exploration</h1>
-  		Words taken from the most popular sources for each methodology, and "normalized".    		
+  		<p>Words taken from the most popular sources for each methodology, and "normalized".  
   		<a href='#' onclick='document.getElementById("readme").style.display="block"'>See more</a>
+  		</p>
 
    	<div id="readme" >
   		<h2>Methodology</h2>
-  		<p>Went to the most popular sources for the various agile software methodologies and found what was 
+  		<p>I went to the most popular sources for the various agile software methodologies and found what was 
   		(in my opinion), the canonical summary of it. For example, the Agile Manifesto has a one page values
   		page and 12 principals. Some were less obvious, and I identified a chapter on lean software as my source.</p>
   		
@@ -90,17 +101,11 @@
   		upon the visual theseaurus metaphor. I actually rejected this as "flashy" and unnecessary use of software when
   	    I first saw it, but the more I thought about it, the better fit it was.</p>
   	    
-  	    <p>It was then a matter of finding a technology that would do this. I looked at using Processing (a Java variant
-  	    that lots of people are using to build visualizations), but thought wanted something as light weight as possible.
-  	    So Google to the rescue, and I found someone who had experimented with "force directed graphs" in Javascript. 
-  	    I grabbed the code, and threw my data in it.</p>
   	    
-  	    <p>There was a little engineering in how I integrated this. I knew the spreadsheet would update (and I wanted to add
-  	    more methodologies potentially), so I wrote a Ruby script that takes the spreadsheet and generates Javascript. But
-  	    I wanted some leeway with the Javascript to try different approaches, so I had the Ruby script generate 
-  	    data structure. And I wrote simple Javascript that was driven off of these structures.</p>
+  	    <p><!--Credits:   		Graphics based on <a href="http://www.kylescholz.com/blog/2006/06/force_directed_graphs_in_javas.html" target="_blank">Force Directed Graphs in Javascript?</a>-->
   	    
-  	    <p>Credits:   		Graphics based on <a href="http://www.kylescholz.com/blog/2006/06/force_directed_graphs_in_javas.html" target="_blank">Force Directed Graphs in Javascript?</a>
+  	    <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/us/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/us/88x31.png" /></a><br /><span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/InteractiveResource" property="dc:title" rel="dc:type">Agile Software Methodologies Visualization</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://ndpsoftware.com/agile_methods/agile_methods.html" property="cc:attributionName" rel="cc:attributionURL">Andrew J. Peterson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/us/">Creative Commons Attribution-Share Alike 3.0 United States License</a>.<br />Based on a work at <a xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://www.kylescholz.com/blog/2006/06/force_directed_graphs_in_javas.html" rel="dc:source">www.kylescholz.com</a>.
+  	    
 </p>
   	</div>
  	</div>
