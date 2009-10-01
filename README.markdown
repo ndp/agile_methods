@@ -4,12 +4,12 @@ I created a quick visualization about agile methodologies:
 
 What it shows is the main concepts of 5 different agile viewpoints: XP, Scrum, the Agile Manifesto, Lean and Getting Real. Sure
 
-h3. Motivation
+### Motivation
 
 There are different flavors of agile. I think I can discuss the differences coherently, but I wondered if there were some way to distill the differences down to something that could be represented in one page. All these practices share some history and concepts, but can be they  be presented and compared in a fairly simplistic way?
 
 
-h3. Building the Visualization
+### Building the Visualization
 
 The first challenge was to revisit each methodology and identify the top few values and concepts that define it. My idea to summarize each practice was to just find the canonical description of each methodology and capture the top concepts as succinctly as possible. 
 
