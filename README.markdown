@@ -94,7 +94,7 @@ So went through a normalization process. Is a "sprint" the same thing as an "ite
 
 Even with the "normalized spreadsheet", though, it wasn't easy to compare the practices. I tried different sorting and coloring to no avail. I then tried different graphing options, starting first with "mind maps". I tried 3-d bar charts, but they were little help. And plotting the words in grids, but couldn't make it work.
 
-I finally stumbled upon the visual theseaurus metaphor. As a regular thesaurus, I always thought the display a bit gratuitous: a word in the center with its synonyms "floating around", connected by some gravity. The more I thought about it, though, the better fit it seemed.
+I finally stumbled upon the visual thesaurus metaphor. As a regular thesaurus, I always thought the display a bit gratuitous: a word in the center with its synonyms "floating around", connected by some gravity. The more I thought about it, though, the better fit it seemed.
        
 Next I needed a tool in which to implement my visualization. You can license the technology, but I had a $0 budget and just a few hours to devote to it. I looked at using Processing (a Java variant that lots of people are using to build visualizations); there were some implementations, but I wanted something even lighter weight if possible. After another Google or two, and I found Javascript-based experiments with "force directed graphs". I grabbed the code, and threw my data in it.
 
