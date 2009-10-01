@@ -100,5 +100,8 @@ Next I needed a tool in which to implement my visualization. You can license the
 
 Actually, there was a little engineering involved. I knew I would update the spreadsheet (and I wanted to add other practices potentially), so instead of converting the spreadsheet directly to the Javascript, I wrote a Ruby script that takes the spreadsheet and generates JSON data structures. The structures are then fed into a small engine I wrote, and the graphic is created.
 
-Code available <a href="http://github.com/ndp/agile_methods" target="_blank">http://github.com/ndp/agile_methods</a>
+Code available <a href="http://github.com/ndp/agile_methods" target="_blank">http://github.com/ndp/agile_methods</a> 
+
+<br />
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/us/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/us/88x31.png" /></a><br /><span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/InteractiveResource" property="dc:title" rel="dc:type">Agile Software Methodologies Visualization</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://ndpsoftware.com/agile_methods/agile_methods.html" property="cc:attributionName" rel="cc:attributionURL">Andrew J. Peterson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/us/">Creative Commons Attribution-Share Alike 3.0 United States License</a>.<br />Based on a work at <a xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://www.kylescholz.com/blog/2006/06/force_directed_graphs_in_javas.html" rel="dc:source">www.kylescholz.com</a
 
