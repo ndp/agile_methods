@@ -14,7 +14,7 @@ puts 'var nodes = {};'
 puts 'var edges = {};'
 
 
-columns = 8
+columns = 9
 lines = File.readlines('agile_methods.txt')
 lines.shift
 headers = []
@@ -33,7 +33,7 @@ columns.times { lines.shift }
 lines.each_slice(columns) do |slice|
 	label = to_label(slice.shift)
 	next if label.blank?
-	next unless slice.any? {|s| !s.blank? && s.to_i < 10}
+	next unless slice.any? {|s| !s.blank? && s.to_i < 15}
 	k = to_var(label) 
     puts "nodes['" + k + "'] = { label: '" + label + "', mass: 2, cssClass: 'attr'};"
     

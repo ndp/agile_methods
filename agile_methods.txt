@@ -7,6 +7,7 @@ Scrum
 Scrum (ch9)
 Lean
 Getting Real
+Manifesto of Software Craftsmanship
 
 http://www.extremeprogramming.org/
 http://agilemanifesto.org/
@@ -15,6 +16,7 @@ http://en.wikipedia.org/wiki/Scrum_(development)
 Agile Software Development with Scrum, Chapter 9
 http://en.wikipedia.org/wiki/Lean_software_development
 p. 2
+http://manifesto.softwarecraftsmanship.org/main
 Holistic
 
 
@@ -23,11 +25,13 @@ Holistic
 
 7
 
+
 Overlapping Phases
 
 
 
 2
+
 
 
 
@@ -39,11 +43,13 @@ Cross-Functional Teams
 
 
 
+
 Practices
 
 
 
 4
+
 
 
 
@@ -55,11 +61,13 @@ Predefined Roles
 
 
 
+
 Iteration/Sprint
 
 
 
 6
+
 
 
 
@@ -71,11 +79,13 @@ Working Software
 
 4
 
+
 Backlog
 
 
 
 8
+
 
 
 
@@ -87,11 +97,13 @@ Self-Organizing
 
 5
 
+
 Colocation
 
 
 
 10
+
 
 
 
@@ -103,11 +115,13 @@ Empirical Approach
 
 
 
+
 Respond to Change
 
 
 2
 14
+
 
 
 
@@ -119,10 +133,12 @@ Easy to Learn
 
 
 
+
 Customer Satisfaction
 1
 
 1
+
 
 
 
@@ -135,10 +151,12 @@ Collaborate with Customers
 
 
 
+
 Individuals
 
 
 5
+
 
 
 
@@ -151,10 +169,12 @@ Face-to-face communication
 
 
 
+
 Working Software
 
 
 7
+
 
 
 
@@ -167,10 +187,12 @@ Sustainable Development
 
 
 
+
 Technical Excellence
 
 
 9
+
 
 
 
@@ -183,6 +205,7 @@ Simplicity
 
 
 
+
 Team Reflections
 
 
@@ -191,9 +214,11 @@ Team Reflections
 
 
 
+
 Face-to-face communication
 
 1
+
 
 
 
@@ -207,9 +232,11 @@ Individuals
 
 
 
+
 Working Software
 
 2
+
 
 
 
@@ -223,9 +250,11 @@ Collaborate with Customers
 
 
 
+
 Respond to Change
 
 4
+
 
 
 
@@ -239,8 +268,10 @@ Working Software
 
 
 
+
 Respond to Change
 3
+
 
 
 
@@ -255,8 +286,10 @@ Teamwork
 
 
 
+
 Equal Partners
 5
+
 
 
 
@@ -271,8 +304,10 @@ Collaborators
 
 
 
+
 Simple Environment
 7
+
 
 
 
@@ -287,8 +322,10 @@ High Productivity
 
 
 
+
 Self-Organizing
 8
+
 
 
 
@@ -303,8 +340,10 @@ Communication
 
 
 
+
 Simplicity
 9
+
 
 
 
@@ -319,8 +358,10 @@ Feedback
 
 
 
+
 Deliver Early
 9
+
 
 
 
@@ -335,7 +376,9 @@ Courage
 
 
 
+
 Respond to Change
+
 
 
 
@@ -351,6 +394,7 @@ Simple Rules
 
 
 
+
 Feedback
 
 
@@ -359,7 +403,9 @@ Feedback
 
 2
 
+
 Communication
+
 
 
 
@@ -375,6 +421,7 @@ Courage
 5
 
 
+
 Eliminate waste
 
 
@@ -382,6 +429,7 @@ Eliminate waste
 
 
 1
+
 
 Decide as late as possible (JIT)
 
@@ -391,6 +439,7 @@ Decide as late as possible (JIT)
 
 3
 
+
 Build integrity in
 
 
@@ -399,12 +448,14 @@ Build integrity in
 
 6
 
+
 Commitment
 
 
 
 
 1
+
 
 
 Focus
@@ -415,12 +466,14 @@ Focus
 2
 
 
+
 Openness
 
 
 
 
 3
+
 
 
 Respect
@@ -431,6 +484,7 @@ Respect
 4
 
 
+
 Smarter, better, faster
 
 
@@ -439,6 +493,7 @@ Smarter, better, faster
 
 
 1
+
 Working Software
 
 
@@ -447,6 +502,7 @@ Working Software
 
 
 2
+
 Simplicity
 
 
@@ -455,6 +511,7 @@ Simplicity
 
 
 3
+
 Staying Small
 
 
@@ -463,6 +520,7 @@ Staying Small
 
 
 4
+
 Respond to Change
 
 
@@ -471,6 +529,7 @@ Respond to Change
 
 
 5
+
 Iteration/Sprint
 
 
@@ -479,6 +538,7 @@ Iteration/Sprint
 
 
 6
+
 Lowering Cost of Change
 
 
@@ -487,6 +547,7 @@ Lowering Cost of Change
 
 
 7
+
 Deliver Early
 
 
@@ -495,6 +556,7 @@ Deliver Early
 
 
 8
+
 Tweaking
 
 
@@ -503,6 +565,7 @@ Tweaking
 
 
 9
+
 Constantly Improving
 
 
@@ -511,6 +574,7 @@ Constantly Improving
 
 
 10
+
 Delivery Needs
 
 
@@ -519,6 +583,7 @@ Delivery Needs
 
 
 11
+
 Eliminate what customers don’t need
 
 
@@ -527,4 +592,95 @@ Eliminate what customers don’t need
 
 
 12
+
+Constantly Improving
+
+
+
+
+
+
+
+5
+Working Software
+
+
+
+
+
+
+
+6
+Well-crafted software
+
+
+
+
+
+
+
+1
+Respond to Change
+
+
+
+
+
+
+
+7
+Steadily adding value
+
+
+
+
+
+
+
+2
+Individuals
+
+
+
+
+
+
+
+8
+Community of professionals
+
+
+
+
+
+
+
+3
+Collaborate with Customers
+
+
+
+
+
+
+
+9
+Partnerships
+
+
+
+
+
+
+
+4
+Helping others learn the craft
+
+
+
+
+
+
+
+5
 

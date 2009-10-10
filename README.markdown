@@ -102,6 +102,15 @@ Actually, there was a little engineering involved. I knew I would update the spr
 
 Code available <a href="http://github.com/ndp/agile_methods" target="_blank">http://github.com/ndp/agile_methods</a> 
 
+To modify, edit the Numbers spreadsheet. 
+
+After you have edited it, copy and paste column B-J into agile_methods.txt. This
+puts one cell per line.
+
+Run:  ruby txt_to_json.rb agile_methods.txt >agile_methods.js
+
+Open up agile_methods.html.
+
 <br />
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/us/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/us/88x31.png" /></a><br /><br /><br /><span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/InteractiveResource" property="dc:title" rel="dc:type">Agile Software Methodologies Visualization</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://ndpsoftware.com/agile_methods/agile_methods.html" property="cc:attributionName" rel="cc:attributionURL">Andrew J. Peterson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/us/">Creative Commons Attribution-Share Alike 3.0 United States License</a>.<br />Based on a work at <a xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://www.kylescholz.com/blog/2006/06/force_directed_graphs_in_javas.html" rel="dc:source">www.kylescholz.com</a>.
 
