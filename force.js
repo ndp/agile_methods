@@ -349,6 +349,18 @@ Graph.prototype = {
     }
   },
 
+  // remove an edge from the graph
+  removeEdge: function( node1, node2 ) {
+    try {
+      this.ui.removeEdge( node1, node2 );
+      node1['neighbors']--;
+      node2['neighbors']--;
+    } catch( e ) {
+      //TODO: handle
+      alert( "Error Removing Edge: " + e );
+    }
+  },
+
   // add an edge to the graph
   addOriginEdge: function( node, weight ) {
     try {
@@ -538,6 +550,12 @@ GraphUI.prototype = {
     var edge = document.createElement("div");
     edge.id = 'edge'+nodeI.id+':'+nodeJ.id;
     document.body.appendChild(edge);
+  },
+
+  // add an edge to the display
+  removeEdge: function( nodeI, nodeJ ) {
+    var edge = document.getElementById('edge'+nodeI.id+':'+nodeJ.id);
+    document.body.removeElement(edge);
   },
 
   // add a node to the display

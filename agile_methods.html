@@ -1,7 +1,7 @@
 <html>
   <head>
 
-    <title>Force Directed Graphing in Javascript</title>
+    <title>Agile Practices... Visualized?</title>
 
 <!--    <script src="event.js"></script>
     <script src="timer.js"></script>
@@ -11,70 +11,14 @@
     <script src="control.js"></script>-->
     <script src="force.js"></script>
     <script src="agile_methods.js"></script>
+    <script src="jquery-1.3.2.min.js"></script>
     
-
-    <style type="text/css">
-    html, body {
-    	margin: 0;
-    	padding: 0;
-    	font-family: verdana;
-    }
-       #origin {
-        position: absolute;
-        width: 14px;
-        height: 14px;
-        left:10px;
-        top:10px;
-        font-size: 11px;
-        text-align: center;
-        -moz-border-radius: 14px;
-		z-Index:100;
-      }
-      
-      h1 {
-		font-size: 12px;
-		padding-left: 20px;
-      }
-      p {
-		padding-left: 20px;
-		font-size: 12px;
-      }
-      
-      div.method {
-      	background-color: orange;
-      	opacity: 0.9;
-      	font-weight: bold;
-      	padding: 3px;
-      }
-      
-      div.attr, div.method {
-      	cursor: pointer;
-      }
-      
-      div.legal {
-      	position: fixed;
-      	top: 0;
-      	width: 100%;
-      	background-color: darkorange;
-      	color: white;
-      	padding: 3px;
-      	z-index: 100;
-      	opacity: .9;
-      }
-      
-      div.legal #readme {
-        padding-left: 20px;
-      	display: none;
-      	width: 800px;
-      	overflow: auto;
-      	font-size: 14px;
-      	line-height: 20px;
-
-      }
-    </style>
+	<link type="text/css" rel="stylesheet" href="agile_methods.css" />
 
   </head>
   <body onload="timer.start()">
+  
+  	<div id="controls" ></div>
   
   	<div class="legal">
 <h1>Agile Software Exploration</h1>
@@ -116,12 +60,66 @@
 
     <!-- origin node -->
 
-    <div id="origin" style="font-size:18px;font-weight:bold;font-family:Verdana,sans-serif;">Agile</div>
+    <div id="origin">Agile</div>
 
     <!-- frame -->
     <div id="frame" style="position:absolute;top:0px;left:0px;"></div>
 
     <script language="Javascript">
+
+
+	var controls = document.getElementById('controls');
+	for (n in nodes) {
+		if (nodes[n].cssClass == 'method') {
+			var e = document.createElement('A');
+			e.innerHTML = nodes[n].label;
+			e.href = "#";
+			//e.className = 'on';
+			controls.appendChild(e);
+		}
+	}
+	
+	$('#controls a').click(function(event) {
+		$(this).toggleClass('on');
+		event.preventDefault();
+		createMissingNodes();
+		createMissingEdges();
+	});
+	
+	
+	function shouldDrawNode(s, cls) {
+		var activePractices = $('#controls a.on').text();
+		//console.log("activePractices="+activePractices+ " match(" + s + ") ? " + activePractices.match(s));
+		return cls != 'method' || 
+			activePractices.match(s);
+	}
+
+
+    /* --------------------------- */
+	function eachNode(f) {
+		for (n in nodes) {
+			var node = nodes[n];
+			f(node);
+		}
+	}
+
+	function eachEdge(f) {
+		for (e in edges) {
+		  var edge = edges[e];
+		  var nodeA = nodes[edge.nodeA]['node'];
+		  var nodeB = nodes[edge.nodeB]['node'];
+		  f(edge, nodeA, nodeB);
+		}
+	}
+	
+	
+	function eachMissingEdge(f) {
+		eachEdge(function(edge, nodeA, nodeB) {
+		  if (nodeA && nodeB && !edge['edge']) {
+			  f(edge, nodeA, nodeB);
+		  }
+		});
+	}
 
     /* --------------------------- */
 
@@ -165,26 +163,25 @@
 
 
 	// Add nodes
-	for (n in nodes) {
-		nodes[n]['node'] = control.addNode( nodes[n].label, nodes[n].mass, nodes[n].origin, 55);
-		graphui.getNode( nodes[n]['node'].id ).className=nodes[n].cssClass;
+	function createMissingNodes() {
+		eachNode(function(node) {
+			if (!node['node'] && shouldDrawNode(node.label, node.cssClass)) {
+				node['node'] = control.addNode( node.label, node.mass, node.origin, 55);
+				graphui.getNode( node['node'].id ).className=node.cssClass;
+			}
+		});
 	}
 	
+	
 	// Add edges
-	for (e in edges) {
-	  var edge = edges[e];
-	  var nodeA = nodes[edge.nodeA]['node'];
-	  var nodeB = nodes[edge.nodeB]['node'];
-	  control.addEdge( nodeA, nodeB, edge.weight);
-	}
-
-    
-    //99ee55
-    //eeee66
-    //ee9944
-    //6688ee
-
-    
+	function createMissingEdges() {
+		eachMissingEdge(function(edge, nodeA, nodeB) {
+			edge['edge'] = control.addEdge( nodeA, nodeB, edge.weight);
+		});
+	}	
+	
+	createMissingNodes();	
+	createMissingEdges();
             
     </script>
 
