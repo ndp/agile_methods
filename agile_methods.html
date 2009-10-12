@@ -74,22 +74,16 @@
 			var e = document.createElement('A');
 			e.innerHTML = nodes[n].label;
 			e.href = "#";
-			//e.className = 'on';
+			e.className = n;
 			controls.appendChild(e);
 		}
 	}
 	
-	$('#controls a').click(function(event) {
-		$(this).toggleClass('on');
-		event.preventDefault();
-		createMissingNodes();
-		createMissingEdges();
-	});
 	
 	
 	function shouldDrawNode(s, cls) {
 		var activePractices = $('#controls a.on').text();
-		//console.log("activePractices="+activePractices+ " match(" + s + ") ? " + activePractices.match(s));
+		console.log("activePractices="+activePractices+ " match(" + s + ") ? " + activePractices.match(s));
 		return cls != 'method' || 
 			activePractices.match(s);
 	}
@@ -120,6 +114,14 @@
 		  }
 		});
 	}
+	
+	function eachMissingEdgeForOnPractices(f) {
+		eachMissingEdge(function(edge, nodeA, nodeB) {
+			if ($('#controls a.on.'+edge.nodeA+',#controls a.on.'+edge.nodeB).length > 0) {
+			  f(edge, nodeA, nodeB);
+			}
+		});
+	}
 
     /* --------------------------- */
 
@@ -137,7 +139,6 @@
     FRAME_WIDTH -= (parseInt(document.getElementById('frame').style.left)*2);
     FRAME_HEIGHT -= (parseInt(document.getElementById('frame').style.top));
 
-    // create a timer control
     var timer = new TimerControl();
     timer.initialize( 1 );
 
@@ -148,21 +149,15 @@
                         true
     );
 
-    // instantiate the graph
     var graph=new Graph();
     graph.initialize( FRAME_WIDTH, FRAME_HEIGHT );
-
-    // set a UI for the graph to report to
     graph.setUI( graphui );
-
-    // subscribe the graph to the control timer
     timer.subscribe( graph );
 
     var control = new UserControl();
     control.initialize( timer, graph, graphui );
 
 
-	// Add nodes
 	function createMissingNodes() {
 		eachNode(function(node) {
 			if (!node['node'] && shouldDrawNode(node.label, node.cssClass)) {
@@ -173,15 +168,37 @@
 	}
 	
 	
-	// Add edges
 	function createMissingEdges() {
-		eachMissingEdge(function(edge, nodeA, nodeB) {
+		eachMissingEdgeForOnPractices(function(edge, nodeA, nodeB) {
 			edge['edge'] = control.addEdge( nodeA, nodeB, edge.weight);
 		});
 	}	
 	
 	createMissingNodes();	
 	createMissingEdges();
+
+
+	$('#controls a').click(function(event) {
+		event.preventDefault();
+		$(this).toggleClass('on');
+		if ($(this).hasClass('on')) {
+			createMissingNodes();
+			createMissingEdges();
+		} else {
+			var s = this.className;
+			//console.log('turning off ' + s);
+			eachEdge(function(edge, nodeA, nodeB) {
+			    if (nodeA && nodeB) {
+					//console.log('should remove node? ' + edge.nodeA + ' / ' + edge.nodeB);
+					if ((edge.nodeA == s ||
+						 edge.nodeB == s)) {
+						//console.log('trying to remove node ' + edge.nodeA + edge.nodeB);
+						graph.removeEdge(nodeA, nodeB);
+					}
+			    }
+			});
+		}
+	});
             
     </script>
 

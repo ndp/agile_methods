@@ -352,6 +352,7 @@ Graph.prototype = {
   // remove an edge from the graph
   removeEdge: function( node1, node2 ) {
     try {
+      delete this['edges'][node1.id];
       this.ui.removeEdge( node1, node2 );
       node1['neighbors']--;
       node2['neighbors']--;
@@ -555,7 +556,7 @@ GraphUI.prototype = {
   // add an edge to the display
   removeEdge: function( nodeI, nodeJ ) {
     var edge = document.getElementById('edge'+nodeI.id+':'+nodeJ.id);
-    document.body.removeElement(edge);
+    document.body.removeChild(edge);
   },
 
   // add a node to the display
@@ -615,12 +616,14 @@ GraphUI.prototype = {
 
       try {
         // dom updates are expensive ... recycle where we can
-        if ( !document.getElementById('edge' + nodeI.id + ':' + nodeJ.id + ':' + k) ) {
+        var edgeId = 'edge' + nodeI.id + ':' + nodeJ.id;
+        var id = edgeId + ':' + k;
+        if ( !document.getElementById(id) ) {
           pix = pixTmpl.cloneNode(true);
-          pix.id = 'edge' + nodeI.id + ':' + nodeJ.id + ':' + k;
-          document.getElementById('edge' + nodeI.id + ':' + nodeJ.id).appendChild(pix);
+          pix.id = id;
+          document.getElementById(edgeId).appendChild(pix);
         } else {
-          pix = document.getElementById('edge' + nodeI.id + ':' + nodeJ.id + ':' + k);
+          pix = document.getElementById(id);
         }
         pix.style.left=centeri['x'] +(-1)*p*(distance['dx']/distance['d']);
         pix.style.top=centeri['y'] +(-1)*p*(distance['dy']/distance['d']);
