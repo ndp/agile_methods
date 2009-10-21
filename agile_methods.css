@@ -18,7 +18,7 @@ html, body {
 	}
 	
 h1 {
-	font-size: 12px;
+	font-size: 14px;
 	padding-left: 20px;
 	}
 p {
@@ -60,23 +60,25 @@ div.legal #readme {
 	
 div#controls {
 	position: fixed;
-	bottom: 0;
-	width: 100%;
+	top: 5px;
+	right: 5px;
+	width: 70%;
 	background-color: darkorange;
 	padding: 3px;
 	z-index: 100;
-	opacity: .9;
+	opacity: 1;
 	}
 	
 div#controls a {
 	font-size: 14px;
 	line-height: 20px;
-	padding-left: 20px;
-	padding-right: 20px;      
-	color: white;
+	margin-left: 10px;
+	padding: 0 5px;
+	color: #feb;
+	font-weight: bold;
 	text-decoration: none;
 	display: block;
-	float: left;
+	float: right;
 	}
 	
 div#controls a:hover {
@@ -89,3 +91,13 @@ div#controls a.on {
 	color: white;
 	background-color: orangered;
 	}
+	
+div#controls a:before {
+	content: 'o ';
+}
+div#controls a.on:before,
+div#controls a:hover:before {
+	content: 'X ';
+}
+	
+

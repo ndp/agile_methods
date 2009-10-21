@@ -18,20 +18,20 @@
   </head>
   <body onload="timer.start()">
   
-  	<div id="controls" ></div>
   
   	<div class="legal">
 <h1>Agile Software Exploration</h1>
-  		<p>Words taken from the most popular sources for each methodology, and "normalized".  
+  	<div id="controls" ></div>
+  		<p>Hint: click on practices on the right to see their terms. Drag practices below to see relationships.
   		<a href='#' onclick='document.getElementById("readme").style.display="block"'>See more</a>
   		</p>
 
    	<div id="readme" >
   		<h2>Methodology</h2>
   		
-  		<p>See blog post here: <a href="http://ndpsoft.blogspot.com/2009/09/scrum-xp-agile-and-visualizing.html">http://ndpsoft.blogspot.com/2009/09/scrum-xp-agile-and-visualizing.html</a></p>
+  		<p>Words taken from the most popular sources for each methodology, and "normalized".  See blog post here: <a href="http://ndpsoft.blogspot.com/2009/09/scrum-xp-agile-and-visualizing.html">http://ndpsoft.blogspot.com/2009/09/scrum-xp-agile-and-visualizing.html</a></p>
   		
-  		<p>I went to the most popular sources for the various agile software methodologies and found what was 
+  		<p>In short: I went to the most popular sources for the various agile software methodologies and found what was 
   		(in my opinion), the canonical summary of it. For example, the Agile Manifesto has a one page values
   		page and 12 principals. Some were less obvious, and I identified a chapter on lean software as my source.</p>
   		
@@ -199,6 +199,8 @@
 			});
 		}
 	});
+	
+	$('#controls .scrum, #controls .xp').click();
             
     </script>
 
