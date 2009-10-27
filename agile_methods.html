@@ -83,7 +83,7 @@
 	
 	function shouldDrawNode(s, cls) {
 		var activePractices = $('#controls a.on').text();
-		console.log("activePractices="+activePractices+ " match(" + s + ") ? " + activePractices.match(s));
+		//console.log("activePractices="+activePractices+ " match(" + s + ") ? " + activePractices.match(s));
 		return cls != 'method' || 
 			activePractices.match(s);
 	}
