@@ -372,6 +372,11 @@ Graph.prototype = {
     }
   },
 
+  removeOriginEdge: function( node ) {
+      this.ui.removeEdge( node, graph.getOrigin());
+      delete this['originEdges'][node.id];
+  },
+
   // add a node to the graph
   addNode: function( mass, text ) {
     // initialize the new node at a random offset from the origin
