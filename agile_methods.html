@@ -1,210 +1,387 @@
 <html>
-  <head>
+<head>
 
     <title>Agile Practices... Visualized?</title>
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.3.0/build/cssreset/reset-min.css">
+    <script type="text/javascript">
+        if (typeof console === 'undefined') {
+            console = {
+                log: function() {
+                }
+            }
+        }
+    </script>
 
-<!--    <script src="event.js"></script>
-    <script src="timer.js"></script>
-    <script src="graph.js"></script>
-
-    <script src="domui.js"></script>
-    <script src="control.js"></script>-->
     <script src="force.js"></script>
     <script src="agile_methods.js"></script>
     <script src="jquery-1.3.2.min.js"></script>
-    
-	<link type="text/css" rel="stylesheet" href="agile_methods.css" />
+    <script src="jquery-ui-1.8.5.custom.min.js"></script>
+    <script src="csster.js"></script>
+    <script src="once.js"></script>
+    <script src="pullout_panel.js"></script>
 
-  </head>
-  <body onload="timer.start()">
-  
-  
-  	<div class="legal">
-<h1>Agile Software Exploration</h1>
-  	<div id="controls" ></div>
-  		<p>Hint: click on practices on the right to see their terms. Drag practices below to see relationships.
-  		<a href='#' onclick='document.getElementById("readme").style.display="block"'>See more</a>
-  		</p>
+    <link type="text/css" rel="stylesheet" href="fonts/Impact-Label-fontfacekit/stylesheet.css"/>
+    <link type="text/css" rel="stylesheet" href="agile_methods.css"/>
 
-   	<div id="readme" >
-  		<h2>Methodology</h2>
-  		
-  		<p>Words taken from the most popular sources for each methodology, and "normalized".  See blog post here: <a href="http://ndpsoft.blogspot.com/2009/09/scrum-xp-agile-and-visualizing.html">http://ndpsoft.blogspot.com/2009/09/scrum-xp-agile-and-visualizing.html</a></p>
-  		
-  		<p>In short: I went to the most popular sources for the various agile software methodologies and found what was 
-  		(in my opinion), the canonical summary of it. For example, the Agile Manifesto has a one page values
-  		page and 12 principals. Some were less obvious, and I identified a chapter on lean software as my source.</p>
-  		
-  		<p>After identifying the source, I indexed the "concepts". There's lots of squishyness here, and lots of
-  		room for error and opinions to sneak in. I repeated my process on XP and agile, and got subtly different results.
-  		Not great from a scientific method point of view, but let's call it "experimental error".</p>
-  		
-  		<p>After identifying the concepts, I went through a process of "normalizing" those into what seemed like 
-  		the same concept. Again, lots of room for error. Are "sprints" the same as "iterations"? Well, I had to
-  		make lots of calls.</p>
-  		
-  		<p>Finally, I wanted to visualize this data. I looked at different options, rejected quite a few. MindMaps are
-  		neat, but don't really promote the comparison I wanted. Any sort of graph didn't work well. I finally settled
-  		upon the visual theseaurus metaphor. I actually rejected this as "flashy" and unnecessary use of software when
-  	    I first saw it, but the more I thought about it, the better fit it was.</p>
-  	    
-  	    
-  	    <p><!--Credits:   		Graphics based on <a href="http://www.kylescholz.com/blog/2006/06/force_directed_graphs_in_javas.html" target="_blank">Force Directed Graphs in Javascript?</a>-->
-  	    
-  	    <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/us/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/us/88x31.png" /></a><br /><span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/InteractiveResource" property="dc:title" rel="dc:type">Agile Software Methodologies Visualization</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://ndpsoftware.com/agile_methods/agile_methods.html" property="cc:attributionName" rel="cc:attributionURL">Andrew J. Peterson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/us/">Creative Commons Attribution-Share Alike 3.0 United States License</a>.<br />Based on a work at <a xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://www.kylescholz.com/blog/2006/06/force_directed_graphs_in_javas.html" rel="dc:source">www.kylescholz.com</a>.
-  	    
-</p>
-  	</div>
- 	</div>
-  	
+    <script type="text/javascript">
 
-    <!-- origin node -->
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-1458227-1']);
+        _gaq.push(['_trackPageview']);
 
-    <div id="origin">Agile</div>
-
-    <!-- frame -->
-    <div id="frame" style="position:absolute;top:0px;left:0px;"></div>
-
-    <script language="Javascript">
-
-
-	var controls = document.getElementById('controls');
-	for (n in nodes) {
-		if (nodes[n].cssClass == 'method') {
-			var e = document.createElement('A');
-			e.innerHTML = nodes[n].label;
-			e.href = "#";
-			e.className = n;
-			controls.appendChild(e);
-		}
-	}
-	
-	
-	
-	function shouldDrawNode(s, cls) {
-		var activePractices = $('#controls a.on').text();
-		console.log("activePractices="+activePractices+ " match(" + s + ") ? " + activePractices.match(s));
-		return cls != 'method' || 
-			activePractices.match(s);
-	}
-
-
-    /* --------------------------- */
-	function eachNode(f) {
-		for (n in nodes) {
-			var node = nodes[n];
-			f(node);
-		}
-	}
-
-	function eachEdge(f) {
-		for (e in edges) {
-		  var edge = edges[e];
-		  var nodeA = nodes[edge.nodeA]['node'];
-		  var nodeB = nodes[edge.nodeB]['node'];
-		  f(edge, nodeA, nodeB);
-		}
-	}
-	
-	
-	function eachMissingEdge(f) {
-		eachEdge(function(edge, nodeA, nodeB) {
-		  if (nodeA && nodeB && !edge['edge']) {
-			  f(edge, nodeA, nodeB);
-		  }
-		});
-	}
-	
-	function eachMissingEdgeForOnPractices(f) {
-		eachMissingEdge(function(edge, nodeA, nodeB) {
-			if ($('#controls a.on.'+edge.nodeA+',#controls a.on.'+edge.nodeB).length > 0) {
-			  f(edge, nodeA, nodeB);
-			}
-		});
-	}
-
-    /* --------------------------- */
-
-    var FRAME_WIDTH;
-    var FRAME_HEIGHT;
-
-    if (IE) {
-      FRAME_WIDTH = document.body.offsetWidth;
-      FRAME_HEIGHT = document.body.offsetHeight;
-    } else {
-      FRAME_WIDTH = window.innerWidth;
-      FRAME_HEIGHT = window.innerHeight;
-    }
-
-    FRAME_WIDTH -= (parseInt(document.getElementById('frame').style.left)*2);
-    FRAME_HEIGHT -= (parseInt(document.getElementById('frame').style.top));
-
-    var timer = new TimerControl();
-    timer.initialize( 1 );
-
-    var graphui=new GraphUI();
-    graphui.initialize( document.getElementById('frame'), 
-                        document.getElementById('origin'),
-                        true,
-                        true
-    );
-
-    var graph=new Graph();
-    graph.initialize( FRAME_WIDTH, FRAME_HEIGHT );
-    graph.setUI( graphui );
-    timer.subscribe( graph );
-
-    var control = new UserControl();
-    control.initialize( timer, graph, graphui );
-
-
-	function createMissingNodes() {
-		eachNode(function(node) {
-			if (!node['node'] && shouldDrawNode(node.label, node.cssClass)) {
-				node['node'] = control.addNode( node.label, node.mass, node.origin, 55);
-				graphui.getNode( node['node'].id ).className=node.cssClass;
-			}
-		});
-	}
-	
-	
-	function createMissingEdges() {
-		eachMissingEdgeForOnPractices(function(edge, nodeA, nodeB) {
-			edge['edge'] = control.addEdge( nodeA, nodeB, edge.weight);
-		});
-	}	
-	
-	createMissingNodes();	
-	createMissingEdges();
-
-
-	$('#controls a').click(function(event) {
-		event.preventDefault();
-		$(this).toggleClass('on');
-		if ($(this).hasClass('on')) {
-			createMissingNodes();
-			createMissingEdges();
-		} else {
-			var s = this.className;
-			//console.log('turning off ' + s);
-			eachEdge(function(edge, nodeA, nodeB) {
-			    if (nodeA && nodeB) {
-					//console.log('should remove node? ' + edge.nodeA + ' / ' + edge.nodeB);
-					if ((edge.nodeA == s ||
-						 edge.nodeB == s)) {
-						//console.log('trying to remove node ' + edge.nodeA + edge.nodeB);
-						graph.removeEdge(nodeA, nodeB);
-					}
-			    }
-			});
-		}
-	});
-	
-	$('#controls .scrum, #controls .xp').click();
-            
+        (function() {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
     </script>
 
-  </body>
+</head>
+<body>
+
+<div id="hd">
+    <h1>Agile Software Exploration</h1>
+
+    <h2><a href="http://ndpsoftware.com">an interaction
+        from NDP Software</a>
+        <span>(c) Andrew Peterson 2009-2011 All Rights Reserved.</span></h2>
+</div>
+<div id="controls">
+</div>
+
+<div id="body" style="position: relative; float: left;">
+
+    <div id="origin"></div>
+
+    <div id="frame" style="position:absolute;top:0px;left:0px;"></div>
+
+</div>
+
+
+<div id="about">
+    <h4 style="padding-bottom: 25px">What's going on here?<span>click to hide</span></h4>
+
+    <p>The values and practices of
+        popular agile software
+        methodologies are represented by words on the page. They float freely, but they
+        are connected to each practice
+        based on how much they are valued-- the closer the more valuable.
+    </p>
+
+    <p>
+        &raquo; Select different methodologies. <br/>&raquo; Drag phrases around to
+        see how they relate.
+    </p>
+
+    <p>
+        See blog post here: <a
+            href="http://blog.ndpsoftware.com/2009/09/scrum-xp-agile-and-visualizing.html">http://ndpsoft.blogspot.com/2009/09/scrum-xp-agile-and-visualizing.html</a>
+    </p>
+
+
+    <p>
+        Based on a force directed graph at <a
+            xmlns:dc="http://purl.org/dc/elements/1.1/"
+            href="http://www.kylescholz.com/blog/2006/06/force_directed_graphs_in_javas.html" rel="dc:source">www.kylescholz.com</a>.
+        <br/><span
+            xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/InteractiveResource"
+            property="dc:title" rel="dc:type">Agile Software Methodologies Visualization</span> by <a
+            xmlns:cc="http://creativecommons.org/ns#" href="http://ndpsoftware.com/agile_methods/agile_methods.html"
+            property="cc:attributionName" rel="cc:attributionURL">Andrew J. Peterson</a> is licensed under a <a
+            rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/us/">Creative Commons
+        Attribution-Share Alike 3.0 United States License</a>.
+        <br>
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/us/"><img
+                alt="Creative Commons License" style="border-width:0"
+                src="http://i.creativecommons.org/l/by-sa/3.0/us/88x31.png"/></a>
+    </p>
+</div>
+
+<script type="text/javascript">
+
+Csster.style({
+    '#hd': {
+        height: 50,
+        padding: 10,
+        '>*': {
+            'float': 'left',
+            paddingTop: 10,
+            paddingLeft: 10,
+            margin: 0,
+            padding: 0
+        },
+        h1: {
+            paddingRight: 10,
+            font: '40px ImpactLabelRegular, verdana'
+        },
+        h2: {
+            color: 'black',
+            font: 'normal 25px ImpactLabelReversedRegular,  verdana',
+            a: {
+                textDecoration: 'none'
+            },
+            'a:hover': {
+                textDecoration: 'underline'
+            },
+            span: {
+                display: 'block',
+                font: '15px courier, monospaced'
+            }
+        }
+    }
+});
+
+$(function() {
+    $('#about')
+            .pulloutPanel({open:true,
+                              css:
+                              {
+                                  has:[boxShadow([0,0], 10, 'black'),roundedCorners('tr', 10)]
+                              }
+                          })
+            .click(
+            function() {
+                $(this).trigger('toggle');
+            })
+            .bind('opened closed',
+            function() {
+                $(this).find('h4 span').text('click to ' + ($(this).hasClass('opened') ? 'hide' : 'find out'));
+            }).trigger('close');
+});
+
+
+Csster.style({
+    '#about': {
+        fontFamily: 'georgia',
+        width: 500,
+        padding: '10px 20px',
+        maxHeight: '75%',
+        backgroundColor: 'black',
+        color: 'white',
+        h1: {
+            font: '35px/40px ImpactLabelReversedRegular, georgia',
+            padding: '10px 0 0 0',
+            margin: 0
+        },
+        h4: {
+            color: 'white',
+            font: '20px/20px ImpactLabelReversedRegular, georgia',
+            padding: '5px 0',
+            margin: '0 0 20px 0',
+            fontStyle: 'plain',
+            span: {
+                paddingTop: 0,
+                'float': 'right',
+                color: 'white',
+                fontWeight: 'bold',
+                font: '20px/25px ImpactLabelRegular, georgia'
+            }
+        },
+        '&:hover h4 span': {opacity: 1},
+        h2: {
+            font: '20px/20px ImpactLabelReversedRegular, georgia',
+            padding: '10px 0 0 0',
+            margin: 0,
+            fontStyle: 'plain'
+        },
+        p: {
+            font: '15px/20px georgia',
+            margin: '0 0 10px 0'
+        },
+        h5: {
+            font: '12px/20px ImpactLabelReversedRegular, georgia',
+            padding: '10px 0 0 0',
+            margin: 0,
+            fontStyle: 'plain'
+        },
+        '.copyright': {
+            font: '12px/20px georgia'
+        },
+        'a:link, a:visited': {
+            color: 'white',
+            textDecoration: 'none'
+        },
+        'a:hover': {
+            textDecoration: 'underline'
+        }
+    }
+})
+
+
+var controls = document.getElementById('controls');
+for (n in methods) {
+    $(controls).
+            append('<label><input type="checkbox" class="' + n + '" />&nbsp;' + methods[n] + '</label>');
+
+}
+$(controls).find('input.agile_manifesto').attr('checked', 'checked');
+
+
+function activePractices() {
+    return $('#controls input:checked').map(function() {
+        return this.className
+    });
+}
+
+
+function isPracticeActive(m) {
+    var ap = activePractices();
+    for (var i = 0; i < ap.length; i++) {
+        if (m == ap[i] || m == methods[ap[i]]) {
+            return true;
+        }
+    }
+}
+
+
+function shouldDrawNode(node) {
+    var s = node.label;
+    var cls = node.cssClass
+//    console.log("shouldDrawNode(" + s + "," + cls + ") isPracticeActive=" + isPracticeActive(s));
+    if (cls == 'method') {
+        return isPracticeActive(s);
+    } else {
+//        console.log(node);
+        return true;
+    }
+}
+
+
+/* --------------------------- */
+function eachNode(f) {
+    for (n in nodes) {
+        f(nodes[n]);
+    }
+}
+
+function eachEdge(f) {
+    for (e in edges) {
+        var edge = edges[e];
+        var nodeA = nodes[edge.nodeA]['node'];
+        var nodeB = nodes[edge.nodeB]['node'];
+        f(edge, nodeA, nodeB);
+    }
+}
+
+
+function eachMissingEdge(f) {
+    eachEdge(function(edge, nodeA, nodeB) {
+        if (nodeA && nodeB && !edge['edge']) {
+            f(edge, nodeA, nodeB);
+        }
+    });
+}
+
+function eachMissingEdgeForOnPractices(f) {
+    eachMissingEdge(function(edge, nodeA, nodeB) {
+        if (isPracticeActive(edge.nodeA) || isPracticeActive(edge.nodeB)) {
+            f(edge, nodeA, nodeB);
+        }
+    });
+}
+
+function createMissingNodes() {
+    eachNode(function(node) {
+        if (!node.node && shouldDrawNode(node)) {
+            node.node = control.addNode(node.label, node.mass, node.origin, 55);
+            graphui.getNode(node.node.id).className = node.cssClass;
+        }
+    });
+}
+
+
+function createMissingEdges() {
+    eachMissingEdgeForOnPractices(function(edge, nodeA, nodeB) {
+        edge['edge'] = control.addEdge(nodeA, nodeB, edge.weight);
+    });
+}
+
+
+/* --------------------------- */
+
+var frame = (function() {
+    var width, height;
+
+    if (IE) {
+        width = document.body.offsetWidth;
+        height = document.body.offsetHeight;
+    } else {
+        width = window.innerWidth;
+        height = window.innerHeight;
+    }
+
+    width -= (parseInt(document.getElementById('frame').style.left) * 2);
+    height -= (parseInt(document.getElementById('frame').style.top));
+    return {width:width, height: height};
+})();
+
+var timer = new TimerControl();
+timer.initialize(5);
+
+var graphui = new GraphUI();
+graphui.initialize(document.getElementById('frame'),
+        document.getElementById('origin'),
+        true,
+        true
+        );
+
+var graph = new Graph();
+graph.initialize(frame.width, frame.height);
+graph.setUI(graphui);
+timer.subscribe(graph);
+
+var control = new UserControl();
+control.initialize(timer, graph, graphui);
+
+
+
+createMissingNodes();
+createMissingEdges();
+
+
+$('#controls input').change(function(event) {
+    var s = this.className;
+    var on = isPracticeActive(s);
+//    console.log(s + ' ' + on);
+    //event.preventDefault();
+    if (on) {
+        updateAddingNecessary();
+    } else {
+        console.log('turning off ' + s);
+
+        eachEdge(function(edge, nodeA, nodeB) {
+            if (nodeA && nodeB) {
+                console.log('should remove node? ' + edge.nodeA + ' / ' + edge.nodeB);
+                if ((edge.nodeA == s ||
+                        edge.nodeB == s)) {
+                    console.log('YES! ', edge.nodeA, edge.nodeB);
+                    graph.removeEdge(nodeA, nodeB);
+                }
+            }
+        });
+        eachNode(function(node) {
+//                if (node.node && node.label === s) {
+//                    graph.removeOriginEdge(node.node);
+//                    delete node.node;
+//                }
+        })
+    }
+});
+
+function updateAddingNecessary() {
+    createMissingNodes();
+    createMissingEdges();
+}
+
+$(function() {
+    timer.start();
+});
+</script>
+
+</body>
 
 </html>
 

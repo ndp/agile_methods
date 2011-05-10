@@ -1,103 +1,32 @@
-html, body {
-	margin: 0;
-	padding: 0;
-	font-family: verdana;
-	}
-#origin {
-	position: absolute;
-	height: 2ex;
-	padding: 0 2px;
-	z-Index:100;
-    font-size:20px;
-    font-weight:bold;
-    font-family:Verdana,sans-serif;
-    color: white;
-    opacity: .5;
-    background-color: orange;
-    border: 1px solid orange;
-	}
-	
-h1 {
-	font-size: 14px;
-	padding-left: 20px;
-	}
-p {
-	padding-left: 20px;
-	font-size: 12px;
-	}
-	
 div.method {
 	background-color: orange;
 	opacity: 0.9;
 	font-weight: bold;
 	padding: 3px;
-	}
+}
 	
 div.attr, div.method {
 	cursor: pointer;
-	}
+}
 	
-div.legal {
-	position: fixed;
-	top: 0;
-	width: 100%;
-	background-color: darkorange;
-	color: white;
-	padding: 3px;
+
+div#controls {
+    width: 100%;
+    padding: 3px 0;
+	background-color: #eee;
+    color: black;
 	z-index: 100;
 	opacity: .9;
+    font: 15px/20px courier, monospaced;
+    float: left;
+    clear: left;
 	}
 	
-div.legal #readme {
-	padding-left: 20px;
-	display: none;
-	width: 800px;
-	overflow: auto;
-	font-size: 14px;
-	line-height: 20px;
-	
-	}
-	
-div#controls {
-	position: fixed;
-	top: 5px;
-	right: 5px;
-	width: 70%;
-	background-color: darkorange;
-	padding: 3px;
-	z-index: 100;
-	opacity: 1;
-	}
-	
-div#controls a {
-	font-size: 14px;
-	line-height: 20px;
-	margin-left: 10px;
-	padding: 0 5px;
-	color: #feb;
-	font-weight: bold;
-	text-decoration: none;
+div#controls label {
+	padding: 0 5px 0 15px;
 	display: block;
-	float: right;
-	}
-	
-div#controls a:hover {
-	color: white;
-	cursor: pointer;
-	text-decoration: underline;
-	}
-	
-div#controls a.on {
-	color: white;
-	background-color: orangered;
-	}
-	
-div#controls a:before {
-	content: 'o ';
+	float: left;
+	white-space: nowrap;
 }
-div#controls a.on:before,
-div#controls a:hover:before {
-	content: 'X ';
-}
-	
+
 
