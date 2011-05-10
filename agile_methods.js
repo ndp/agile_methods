@@ -1,155 +1,156 @@
 var nodes = {};
 var edges = {};
-nodes['xp'] = { label: 'XP', mass: 3, origin: true, cssClass: 'method'};
-nodes['agile_manifesto'] = { label: 'Agile Manifesto', mass: 3, origin: true, cssClass: 'method'};
-nodes['agile_manifesto'] = { label: 'Agile Manifesto', mass: 3, origin: true, cssClass: 'method'};
-nodes['scrum'] = { label: 'Scrum', mass: 3, origin: true, cssClass: 'method'};
-nodes['scrum'] = { label: 'Scrum', mass: 3, origin: true, cssClass: 'method'};
-nodes['lean'] = { label: 'Lean', mass: 3, origin: true, cssClass: 'method'};
-nodes['getting_real'] = { label: 'Getting Real', mass: 3, origin: true, cssClass: 'method'};
-nodes['manifesto_of_software_craftsmanship'] = { label: 'Manifesto of Software Craftsmanship', mass: 3, origin: true, cssClass: 'method'};
-nodes['holistic'] = { label: 'Holistic', mass: 2, cssClass: 'attr'};
-edges['scrumholistic'] = { nodeA: 'scrum', nodeB: 'holistic', weight: 35}
-edges['leanholistic'] = { nodeA: 'lean', nodeB: 'holistic', weight: 65}
-nodes['overlapping_phases'] = { label: 'Overlapping Phases', mass: 2, cssClass: 'attr'};
-edges['scrumoverlapping_phases'] = { nodeA: 'scrum', nodeB: 'overlapping_phases', weight: 40}
-nodes['cross_functional_teams'] = { label: 'Cross-Functional Teams', mass: 2, cssClass: 'attr'};
-edges['scrumcross_functional_teams'] = { nodeA: 'scrum', nodeB: 'cross_functional_teams', weight: 45}
-nodes['practices'] = { label: 'Practices', mass: 2, cssClass: 'attr'};
-edges['scrumpractices'] = { nodeA: 'scrum', nodeB: 'practices', weight: 50}
-nodes['predefined_roles'] = { label: 'Predefined Roles', mass: 2, cssClass: 'attr'};
-edges['scrumpredefined_roles'] = { nodeA: 'scrum', nodeB: 'predefined_roles', weight: 55}
-nodes['iteration_sprint'] = { label: 'Iteration/Sprint', mass: 2, cssClass: 'attr'};
-edges['scrumiteration_sprint'] = { nodeA: 'scrum', nodeB: 'iteration_sprint', weight: 60}
-nodes['working_software'] = { label: 'Working Software', mass: 2, cssClass: 'attr'};
-edges['agile_manifestoworking_software'] = { nodeA: 'agile_manifesto', nodeB: 'working_software', weight: 45}
-edges['scrumworking_software'] = { nodeA: 'scrum', nodeB: 'working_software', weight: 65}
-edges['leanworking_software'] = { nodeA: 'lean', nodeB: 'working_software', weight: 50}
-nodes['backlog'] = { label: 'Backlog', mass: 2, cssClass: 'attr'};
-edges['scrumbacklog'] = { nodeA: 'scrum', nodeB: 'backlog', weight: 70}
-nodes['self_organizing'] = { label: 'Self-Organizing', mass: 2, cssClass: 'attr'};
-edges['agile_manifestoself_organizing'] = { nodeA: 'agile_manifesto', nodeB: 'self_organizing', weight: 80}
-edges['scrumself_organizing'] = { nodeA: 'scrum', nodeB: 'self_organizing', weight: 75}
-edges['leanself_organizing'] = { nodeA: 'lean', nodeB: 'self_organizing', weight: 55}
-nodes['colocation'] = { label: 'Colocation', mass: 2, cssClass: 'attr'};
-edges['scrumcolocation'] = { nodeA: 'scrum', nodeB: 'colocation', weight: 80}
-nodes['empirical_approach'] = { label: 'Empirical Approach', mass: 2, cssClass: 'attr'};
-edges['scrumempirical_approach'] = { nodeA: 'scrum', nodeB: 'empirical_approach', weight: 80}
-nodes['respond_to_change'] = { label: 'Respond to Change', mass: 2, cssClass: 'attr'};
-edges['agile_manifestorespond_to_change'] = { nodeA: 'agile_manifesto', nodeB: 'respond_to_change', weight: 40}
-edges['scrumrespond_to_change'] = { nodeA: 'scrum', nodeB: 'respond_to_change', weight: 80}
-nodes['customer_satisfaction'] = { label: 'Customer Satisfaction', mass: 2, cssClass: 'attr'};
-edges['xpcustomer_satisfaction'] = { nodeA: 'xp', nodeB: 'customer_satisfaction', weight: 35}
-edges['agile_manifestocustomer_satisfaction'] = { nodeA: 'agile_manifesto', nodeB: 'customer_satisfaction', weight: 35}
-nodes['collaborate_with_customers'] = { label: 'Collaborate with Customers', mass: 2, cssClass: 'attr'};
-edges['agile_manifestocollaborate_with_customers'] = { nodeA: 'agile_manifesto', nodeB: 'collaborate_with_customers', weight: 50}
-nodes['individuals'] = { label: 'Individuals', mass: 2, cssClass: 'attr'};
-edges['agile_manifestoindividuals'] = { nodeA: 'agile_manifesto', nodeB: 'individuals', weight: 55}
-nodes['face_to_face_communication'] = { label: 'Face-to-face communication', mass: 2, cssClass: 'attr'};
-edges['agile_manifestoface_to_face_communication'] = { nodeA: 'agile_manifesto', nodeB: 'face_to_face_communication', weight: 60}
-nodes['working_software'] = { label: 'Working Software', mass: 2, cssClass: 'attr'};
-edges['agile_manifestoworking_software'] = { nodeA: 'agile_manifesto', nodeB: 'working_software', weight: 65}
-nodes['sustainable_development'] = { label: 'Sustainable Development', mass: 2, cssClass: 'attr'};
-edges['agile_manifestosustainable_development'] = { nodeA: 'agile_manifesto', nodeB: 'sustainable_development', weight: 70}
-nodes['technical_excellence'] = { label: 'Technical Excellence', mass: 2, cssClass: 'attr'};
-edges['agile_manifestotechnical_excellence'] = { nodeA: 'agile_manifesto', nodeB: 'technical_excellence', weight: 75}
-nodes['simplicity'] = { label: 'Simplicity', mass: 2, cssClass: 'attr'};
-edges['agile_manifestosimplicity'] = { nodeA: 'agile_manifesto', nodeB: 'simplicity', weight: 80}
-nodes['team_reflections'] = { label: 'Team Reflections', mass: 2, cssClass: 'attr'};
-edges['agile_manifestoteam_reflections'] = { nodeA: 'agile_manifesto', nodeB: 'team_reflections', weight: 80}
-nodes['face_to_face_communication'] = { label: 'Face-to-face communication', mass: 2, cssClass: 'attr'};
-edges['agile_manifestoface_to_face_communication'] = { nodeA: 'agile_manifesto', nodeB: 'face_to_face_communication', weight: 35}
-nodes['individuals'] = { label: 'Individuals', mass: 2, cssClass: 'attr'};
-edges['agile_manifestoindividuals'] = { nodeA: 'agile_manifesto', nodeB: 'individuals', weight: 35}
-nodes['working_software'] = { label: 'Working Software', mass: 2, cssClass: 'attr'};
-edges['agile_manifestoworking_software'] = { nodeA: 'agile_manifesto', nodeB: 'working_software', weight: 40}
-nodes['collaborate_with_customers'] = { label: 'Collaborate with Customers', mass: 2, cssClass: 'attr'};
-edges['agile_manifestocollaborate_with_customers'] = { nodeA: 'agile_manifesto', nodeB: 'collaborate_with_customers', weight: 45}
-nodes['respond_to_change'] = { label: 'Respond to Change', mass: 2, cssClass: 'attr'};
-edges['agile_manifestorespond_to_change'] = { nodeA: 'agile_manifesto', nodeB: 'respond_to_change', weight: 50}
-nodes['working_software'] = { label: 'Working Software', mass: 2, cssClass: 'attr'};
-edges['xpworking_software'] = { nodeA: 'xp', nodeB: 'working_software', weight: 40}
-nodes['respond_to_change'] = { label: 'Respond to Change', mass: 2, cssClass: 'attr'};
-edges['xprespond_to_change'] = { nodeA: 'xp', nodeB: 'respond_to_change', weight: 45}
-nodes['teamwork'] = { label: 'Teamwork', mass: 2, cssClass: 'attr'};
-edges['xpteamwork'] = { nodeA: 'xp', nodeB: 'teamwork', weight: 50}
-nodes['equal_partners'] = { label: 'Equal Partners', mass: 2, cssClass: 'attr'};
-edges['xpequal_partners'] = { nodeA: 'xp', nodeB: 'equal_partners', weight: 55}
-nodes['collaborators'] = { label: 'Collaborators', mass: 2, cssClass: 'attr'};
-edges['xpcollaborators'] = { nodeA: 'xp', nodeB: 'collaborators', weight: 60}
-nodes['simple_environment'] = { label: 'Simple Environment', mass: 2, cssClass: 'attr'};
-edges['xpsimple_environment'] = { nodeA: 'xp', nodeB: 'simple_environment', weight: 65}
-nodes['high_productivity'] = { label: 'High Productivity', mass: 2, cssClass: 'attr'};
-edges['xphigh_productivity'] = { nodeA: 'xp', nodeB: 'high_productivity', weight: 65}
-nodes['self_organizing'] = { label: 'Self-Organizing', mass: 2, cssClass: 'attr'};
-edges['xpself_organizing'] = { nodeA: 'xp', nodeB: 'self_organizing', weight: 70}
-nodes['communication'] = { label: 'Communication', mass: 2, cssClass: 'attr'};
-edges['xpcommunication'] = { nodeA: 'xp', nodeB: 'communication', weight: 75}
-nodes['simplicity'] = { label: 'Simplicity', mass: 2, cssClass: 'attr'};
-edges['xpsimplicity'] = { nodeA: 'xp', nodeB: 'simplicity', weight: 75}
-nodes['feedback'] = { label: 'Feedback', mass: 2, cssClass: 'attr'};
-edges['xpfeedback'] = { nodeA: 'xp', nodeB: 'feedback', weight: 75}
-nodes['deliver_early'] = { label: 'Deliver Early', mass: 2, cssClass: 'attr'};
-edges['xpdeliver_early'] = { nodeA: 'xp', nodeB: 'deliver_early', weight: 75}
-nodes['feedback'] = { label: 'Feedback', mass: 2, cssClass: 'attr'};
-edges['leanfeedback'] = { nodeA: 'lean', nodeB: 'feedback', weight: 40}
-nodes['courage'] = { label: 'Courage', mass: 2, cssClass: 'attr'};
-edges['scrumcourage'] = { nodeA: 'scrum', nodeB: 'courage', weight: 55}
-nodes['eliminate_waste'] = { label: 'Eliminate waste', mass: 2, cssClass: 'attr'};
-edges['leaneliminate_waste'] = { nodeA: 'lean', nodeB: 'eliminate_waste', weight: 35}
-nodes['decide_as_late_as_possible'] = { label: 'Decide as late as possible', mass: 2, cssClass: 'attr'};
-edges['leandecide_as_late_as_possible'] = { nodeA: 'lean', nodeB: 'decide_as_late_as_possible', weight: 45}
-nodes['build_integrity_in'] = { label: 'Build integrity in', mass: 2, cssClass: 'attr'};
-edges['leanbuild_integrity_in'] = { nodeA: 'lean', nodeB: 'build_integrity_in', weight: 60}
-nodes['commitment'] = { label: 'Commitment', mass: 2, cssClass: 'attr'};
-edges['scrumcommitment'] = { nodeA: 'scrum', nodeB: 'commitment', weight: 35}
-nodes['focus'] = { label: 'Focus', mass: 2, cssClass: 'attr'};
-edges['scrumfocus'] = { nodeA: 'scrum', nodeB: 'focus', weight: 40}
-nodes['openness'] = { label: 'Openness', mass: 2, cssClass: 'attr'};
-edges['scrumopenness'] = { nodeA: 'scrum', nodeB: 'openness', weight: 45}
-nodes['respect'] = { label: 'Respect', mass: 2, cssClass: 'attr'};
-edges['scrumrespect'] = { nodeA: 'scrum', nodeB: 'respect', weight: 50}
-nodes['smarter_better_faster'] = { label: 'Smarter, better, faster', mass: 2, cssClass: 'attr'};
-edges['getting_realsmarter_better_faster'] = { nodeA: 'getting_real', nodeB: 'smarter_better_faster', weight: 35}
-nodes['working_software'] = { label: 'Working Software', mass: 2, cssClass: 'attr'};
-edges['getting_realworking_software'] = { nodeA: 'getting_real', nodeB: 'working_software', weight: 40}
-nodes['simplicity'] = { label: 'Simplicity', mass: 2, cssClass: 'attr'};
-edges['getting_realsimplicity'] = { nodeA: 'getting_real', nodeB: 'simplicity', weight: 45}
-nodes['staying_small'] = { label: 'Staying Small', mass: 2, cssClass: 'attr'};
-edges['getting_realstaying_small'] = { nodeA: 'getting_real', nodeB: 'staying_small', weight: 50}
-nodes['respond_to_change'] = { label: 'Respond to Change', mass: 2, cssClass: 'attr'};
-edges['getting_realrespond_to_change'] = { nodeA: 'getting_real', nodeB: 'respond_to_change', weight: 55}
-nodes['iteration_sprint'] = { label: 'Iteration/Sprint', mass: 2, cssClass: 'attr'};
-edges['getting_realiteration_sprint'] = { nodeA: 'getting_real', nodeB: 'iteration_sprint', weight: 60}
-nodes['lowering_cost_of_change'] = { label: 'Lowering Cost of Change', mass: 2, cssClass: 'attr'};
-edges['getting_reallowering_cost_of_change'] = { nodeA: 'getting_real', nodeB: 'lowering_cost_of_change', weight: 65}
-nodes['deliver_early'] = { label: 'Deliver Early', mass: 2, cssClass: 'attr'};
-edges['getting_realdeliver_early'] = { nodeA: 'getting_real', nodeB: 'deliver_early', weight: 70}
-nodes['tweaking'] = { label: 'Tweaking', mass: 2, cssClass: 'attr'};
-edges['getting_realtweaking'] = { nodeA: 'getting_real', nodeB: 'tweaking', weight: 75}
-nodes['constantly_improving'] = { label: 'Constantly Improving', mass: 2, cssClass: 'attr'};
-edges['getting_realconstantly_improving'] = { nodeA: 'getting_real', nodeB: 'constantly_improving', weight: 80}
-nodes['delivery_needs'] = { label: 'Delivery Needs', mass: 2, cssClass: 'attr'};
-edges['getting_realdelivery_needs'] = { nodeA: 'getting_real', nodeB: 'delivery_needs', weight: 80}
-nodes['eliminate_what_customers_don_t_need'] = { label: 'Eliminate what customers don’t need', mass: 2, cssClass: 'attr'};
-edges['getting_realeliminate_what_customers_don_t_need'] = { nodeA: 'getting_real', nodeB: 'eliminate_what_customers_don_t_need', weight: 80}
-nodes['constantly_improving'] = { label: 'Constantly Improving', mass: 2, cssClass: 'attr'};
-edges['manifesto_of_software_craftsmanshipconstantly_improving'] = { nodeA: 'manifesto_of_software_craftsmanship', nodeB: 'constantly_improving', weight: 55}
-nodes['working_software'] = { label: 'Working Software', mass: 2, cssClass: 'attr'};
-edges['manifesto_of_software_craftsmanshipworking_software'] = { nodeA: 'manifesto_of_software_craftsmanship', nodeB: 'working_software', weight: 60}
-nodes['well_crafted_software'] = { label: 'Well-crafted software', mass: 2, cssClass: 'attr'};
-edges['manifesto_of_software_craftsmanshipwell_crafted_software'] = { nodeA: 'manifesto_of_software_craftsmanship', nodeB: 'well_crafted_software', weight: 35}
-nodes['respond_to_change'] = { label: 'Respond to Change', mass: 2, cssClass: 'attr'};
-edges['manifesto_of_software_craftsmanshiprespond_to_change'] = { nodeA: 'manifesto_of_software_craftsmanship', nodeB: 'respond_to_change', weight: 65}
-nodes['steadily_adding_value'] = { label: 'Steadily adding value', mass: 2, cssClass: 'attr'};
-edges['manifesto_of_software_craftsmanshipsteadily_adding_value'] = { nodeA: 'manifesto_of_software_craftsmanship', nodeB: 'steadily_adding_value', weight: 40}
-nodes['individuals'] = { label: 'Individuals', mass: 2, cssClass: 'attr'};
-edges['manifesto_of_software_craftsmanshipindividuals'] = { nodeA: 'manifesto_of_software_craftsmanship', nodeB: 'individuals', weight: 70}
-nodes['community_of_professionals'] = { label: 'Community of professionals', mass: 2, cssClass: 'attr'};
-edges['manifesto_of_software_craftsmanshipcommunity_of_professionals'] = { nodeA: 'manifesto_of_software_craftsmanship', nodeB: 'community_of_professionals', weight: 45}
-nodes['collaborate_with_customers'] = { label: 'Collaborate with Customers', mass: 2, cssClass: 'attr'};
-edges['manifesto_of_software_craftsmanshipcollaborate_with_customers'] = { nodeA: 'manifesto_of_software_craftsmanship', nodeB: 'collaborate_with_customers', weight: 75}
-nodes['partnerships'] = { label: 'Partnerships', mass: 2, cssClass: 'attr'};
-edges['manifesto_of_software_craftsmanshippartnerships'] = { nodeA: 'manifesto_of_software_craftsmanship', nodeB: 'partnerships', weight: 50}
-nodes['helping_others_learn_the_craft'] = { label: 'Helping others learn the craft', mass: 2, cssClass: 'attr'};
-edges['manifesto_of_software_craftsmanshiphelping_others_learn_the_craft'] = { nodeA: 'manifesto_of_software_craftsmanship', nodeB: 'helping_others_learn_the_craft', weight: 55}
+
+var methods = {
+    xp: 'XP',
+    agile_manifesto: 'Agile Manifesto',
+    scrum: 'Scrum',
+    lean: 'Lean',
+    getting_real: 'Getting Real',
+    software_craftsmanship: 'Craftsmanship'
+};
+
+for (i in methods) {
+    nodes[i] = {
+        label: methods[i],
+        mass: 3,
+        origin: false,
+        cssClass: 'method'
+    }
+}
+
+
+var values = {
+    'backlog':'Backlog',
+    'build_integrity_in':'Build integrity in',
+    'collaborate_with_customers':'Collaborate with Customers',
+    'collaborators':'Collaborators',
+    'colocation':'Colocation',
+    'commitment':'Commitment',
+    'communication':'Communication',
+    'community_of_professionals':'Community of professionals',
+    'constantly_improving':'Constantly Improving',
+    'courage':'Courage',
+    'cross_functional_teams':'Cross-Functional Teams',
+    'customer_satisfaction':'Customer Satisfaction',
+    'decide_as_late_as_possible':'Decide as late as possible',
+    'deliver_early':'Deliver Early',
+    'delivery_needs':'Delivery Needs',
+    'eliminate_waste':'Eliminate waste',
+    'eliminate_what_customers_don_t_need':'Eliminate what customers don\'t need',
+    'empirical_approach':'Empirical Approach',
+    'equal_partners':'Equal Partners',
+    'face_to_face_communication':'Face-to-face communication',
+    'feedback':'Feedback',
+    'focus':'Focus',
+    'helping_others_learn_the_craft':'Helping others learn the craft',
+    'high_productivity':'High Productivity',
+    'holistic':'Holistic',
+    'individuals':'Individuals',
+    'iteration_sprint':'Iteration/Sprint',
+    'lowering_cost_of_change':'Lowering Cost of Change',
+    'openness':'Openness',
+    'overlapping_phases':'Overlapping Phases',
+    'partnerships':'Partnerships',
+    'practices':'Practices',
+    'predefined_roles':'Predefined Roles',
+    'respect':'Respect',
+    'respond_to_change':'Respond to Change',
+    'self_organizing':'Self-Organizing',
+    'simple_environment':'Simple Environment',
+    'simplicity':'Simplicity',
+    'smarter_better_faster':'Smarter, better, faster',
+    'staying_small':'Staying Small',
+    'steadily_adding_value':'Steadily adding value',
+    'sustainable_development':'Sustainable Development',
+    'team_reflections':'Team Reflections',
+    'teamwork':'Teamwork',
+    'technical_excellence':'Technical Excellence',
+    'tweaking':'Tweaking',
+    'well_crafted_software':'Well-crafted software',
+    'working_software':'Working Software'
+};
+
+for (i in values) {
+    nodes[i] = { label: values[i], mass: 2, cssClass: 'attr'};
+}
+
+
+var weightings = [
+    ['agile_manifesto', 'collaborate_with_customers', 45],
+    ['agile_manifesto', 'customer_satisfaction', 35],
+    ['agile_manifesto', 'face_to_face_communication', 60],
+    ['agile_manifesto', 'individuals', 35],
+    ['agile_manifesto', 'respond_to_change', 50],
+    ['agile_manifesto', 'self_organizing', 80],
+    ['agile_manifesto', 'simplicity', 80],
+    ['agile_manifesto', 'sustainable_development', 70],
+    ['agile_manifesto', 'team_reflections', 80],
+    ['agile_manifesto', 'technical_excellence', 75],
+    ['agile_manifesto', 'working_software', 40],
+    ['getting_real', 'constantly_improving', 80],
+    ['getting_real', 'deliver_early', 70],
+    ['getting_real', 'delivery_needs', 80],
+    ['getting_real', 'eliminate_what_customers_don_t_need', 80],
+    ['getting_real', 'iteration_sprint', 60],
+    ['getting_real', 'lowering_cost_of_change', 65],
+    ['getting_real', 'respond_to_change', 55],
+    ['getting_real', 'simplicity', 45],
+    ['getting_real', 'smarter_better_faster', 35],
+    ['getting_real', 'staying_small', 50],
+    ['getting_real', 'tweaking', 75],
+    ['getting_real', 'working_software', 40],
+    ['lean', 'build_integrity_in', 60],
+    ['lean', 'decide_as_late_as_possible', 45],
+    ['lean', 'eliminate_waste', 35],
+    ['lean', 'feedback', 40],
+    ['lean', 'holistic', 65],
+    ['lean', 'self_organizing', 55],
+    ['lean', 'working_software', 50],
+    ['software_craftsmanship', 'collaborate_with_customers', 75],
+    ['software_craftsmanship', 'community_of_professionals', 45],
+    ['software_craftsmanship', 'constantly_improving', 55],
+    ['software_craftsmanship', 'helping_others_learn_the_craft', 55],
+    ['software_craftsmanship', 'individuals', 70],
+    ['software_craftsmanship', 'partnerships', 50],
+    ['software_craftsmanship', 'respond_to_change', 65],
+    ['software_craftsmanship', 'steadily_adding_value', 40],
+    ['software_craftsmanship', 'well_crafted_software', 35],
+    ['software_craftsmanship', 'working_software', 60],
+    ['scrum', 'backlog', 70],
+    ['scrum', 'colocation', 80],
+    ['scrum', 'commitment', 35],
+    ['scrum', 'courage', 55],
+    ['scrum', 'cross_functional_teams', 45],
+    ['scrum', 'empirical_approach', 80],
+    ['scrum', 'focus', 40],
+    ['scrum', 'holistic', 35],
+    ['scrum', 'iteration_sprint', 60],
+    ['scrum', 'openness', 45],
+    ['scrum', 'overlapping_phases', 40],
+    ['scrum', 'practices', 50],
+    ['scrum', 'predefined_roles', 55],
+    ['scrum', 'respect', 50],
+    ['scrum', 'respond_to_change', 80],
+    ['scrum', 'self_organizing', 75],
+    ['scrum', 'working_software', 65],
+    ['xp', 'collaborators', 60],
+    ['xp', 'communication', 75],
+    ['xp', 'customer_satisfaction', 35],
+    ['xp', 'deliver_early', 75],
+    ['xp', 'equal_partners', 55],
+    ['xp', 'feedback', 75],
+    ['xp', 'high_productivity', 65],
+    ['xp', 'respond_to_change', 45],
+    ['xp', 'self_organizing', 70],
+    ['xp', 'simple_environment', 65],
+    ['xp', 'simplicity', 75],
+    ['xp', 'teamwork', 50],
+    ['xp', 'working_software', 40]
+];
+
+for (i = 0; i < weightings.length; i++) {
+    var weighting = weightings[i];
+    edges[weighting[0] + weighting[1]] = { nodeA: weighting[0], nodeB: weighting[1], weight: weighting[2]}
+}
+
