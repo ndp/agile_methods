@@ -7,7 +7,7 @@ var methods = {
     scrum: 'Scrum',
     lean: 'Lean',
     getting_real: 'Getting Real',
-    software_craftsmanship: 'Craftsmanship'
+    software_craftsmanship: 'Software Craftsmanship'
 };
 
 for (i in methods) {

@@ -136,21 +136,21 @@ Distance.prototype = {
 var Graph = function(){};
 Graph.prototype = {
   initialize: function( frame_width, frame_height ) {
-    this['frame_width']=frame_width;
-    this['frame_height']=frame_height;
+    this.frame_width=frame_width;
+    this.frame_height=frame_height;
 
     // an attractive force is applied between each node and the origin
-    this['origin'] = new Node( 'origin', 1, parseInt(this['frame_width']/2), parseInt(this['frame_height']/2));
-    this['originWeight']=48;
+    this.origin = new Node( 'origin', 1, parseInt(this.frame_width/2), parseInt(this.frame_height/2));
+    this.originWeight=48;
 
     // a "speed" multiple applied to all of the forces in each iteration
     // (a higher number makes the graph move faster but also makes it more volatile)
-    this['speed'] = 12;
+    this.speed = 12;
 
     // actually an _inverse_ gravity constant, used in calculating repulsive force
     this['gravity']=96;
 
-    // the maximum repulsive force that can be aqpplied in an iteration
+    // the maximum repulsive force that can be applied in an iteration
     this['max_repulsive_force_distance']=512;
 
     // the UI that will listen to this graph
@@ -160,9 +160,9 @@ Graph.prototype = {
     this['selectedNode']=-1;
 
     // parallel arrays
-    this['nodes'] = new Array();
-    this['edges'] = new Array();
-    this['originEdges'] = new Array();
+    this.nodes = new Array();
+    this.edges = new Array();
+    this.originEdges = new Array();
 
     this['nodesText'] = new Object();
   },
@@ -170,8 +170,8 @@ Graph.prototype = {
   // add observers to subscribers queue
   setUI: function( ui ) {
     this['ui']=ui;
-    ui.drawFrame( this['frame_width'], this['frame_height'] );
-    ui.drawOrigin( this['origin'] );
+    ui.drawFrame( this.frame_width, this.frame_height );
+    ui.drawOrigin( this.origin );
   },
 
   // Graph is a TimerControl Listener. This is the function the TimerControl event handler calls
@@ -181,14 +181,14 @@ Graph.prototype = {
 
   //
   getOrigin: function() {
-    return this['origin'];
+    return this.origin;
   },
 
   // apply an attractive force between a node and the origin
   // F = (currentLength - desiredLength)
   originForce: function( nodeI, distance ) {
 
-    if ( this['originEdges'][nodeI.id] ) {
+    if ( this.originEdges[nodeI.id] ) {
       if ( nodeI.id != this['selectedNode'] ) {
         var weight = this.originEdges[nodeI.id];
         var attractive_force = (distance['d'] - weight)/weight;
@@ -215,7 +215,7 @@ Graph.prototype = {
   // apply an attractive force between two nodes
   attractiveForce: function( nodeI, nodeJ, distance ) {
     //   F = (currentLength - desiredLength)
-    var weight = this['edges'][nodeI.id][nodeJ.id];
+    var weight = this.edges[nodeI.id][nodeJ.id];
     weight += (3 * (nodeI.neighbors+nodeJ.neighbors));
 
     if ( weight ) {
@@ -269,20 +269,20 @@ Graph.prototype = {
     }
 
 	// reposition nodes
-    for( var i=0; i<this['nodes'].length; i++ ) {
-      var nodeI = this['nodes'][i];
+    for( var i=0; i<this.nodes.length; i++ ) {
+      var nodeI = this.nodes[i];
 
-      for( var j=0; j<this['nodes'].length; j++ ) {
+      for( var j=0; j<this.nodes.length; j++ ) {
         if ( i != j ) {
 
-          var nodeJ = this['nodes'][j];
+          var nodeJ = this.nodes[j];
 
           // get the distance between nodes
           var distance = new Distance();
           distance.calculate( nodeI.position, nodeJ.position );
 
           // attractive force applied across an edge
-          if ( this['edges'][nodeI.id] && this['edges'][nodeI.id][nodeJ.id] ) {
+          if ( this.edges[nodeI.id] && this.edges[nodeI.id][nodeJ.id] ) {
             this.attractiveForce(nodeI, nodeJ, distance);
           }
           // repulsive force between any two nodes
@@ -295,12 +295,12 @@ Graph.prototype = {
       // attractive force to the origin
       // get the distance between node and origin
       var distance = new Distance();
-      distance.calculate( this['origin'].position, nodeI.position );
+      distance.calculate( this.origin.position, nodeI.position );
       this.originForce(nodeI, distance);
 
       // speed multiple
-      nodeI['force']['x']*=this['speed'];
-      nodeI['force']['y']*=this['speed'];
+      nodeI['force']['x']*=this.speed;
+      nodeI['force']['y']*=this.speed;
 
       // add forces to node position
       nodeI['position']['x'] += nodeI['force']['x'];
@@ -328,17 +328,17 @@ Graph.prototype = {
     if ( cxl < 0 ) { node['position']['x']  = 0; }
     if ( cyl < 0 ) { node['position']['y']  = 0; }
 
-    if ( cxm > this['frame_width'] ) { node['position']['x']  = this['frame_width'] - d; }
-    if ( cym > this['frame_height'] ) { node['position']['y']  = this['frame_height'] - d; }
+    if ( cxm > this.frame_width ) { node['position']['x']  = this.frame_width - d; }
+    if ( cym > this.frame_height ) { node['position']['y']  = this.frame_height - d; }
   },
 
   // add an edge to the graph
   addEdge: function( node1, node2, weight ) {
 
-    if ( !this['edges'][node1.id] ) {
-      this['edges'][node1.id]=new Object();
+    if ( !this.edges[node1.id] ) {
+      this.edges[node1.id]=new Object();
     }
-    this['edges'][node1.id][node2.id]=weight;
+    this.edges[node1.id][node2.id]=weight;
     try {
       this.ui.addEdge( node1, node2, weight );
       node1['neighbors']++;
@@ -352,7 +352,7 @@ Graph.prototype = {
   // remove an edge from the graph
   removeEdge: function( node1, node2 ) {
     try {
-      delete this['edges'][node1.id];
+      delete this.edges[node1.id];
       this.ui.removeEdge( node1, node2 );
       node1['neighbors']--;
       node2['neighbors']--;
@@ -365,7 +365,7 @@ Graph.prototype = {
   // add an edge to the graph
   addOriginEdge: function( node, weight ) {
     try {
-      this['originEdges'][node.id]=weight;
+      this.originEdges[node.id]=weight;
     } catch( e ) {
       //TODO: handle
       alert( "Error Adding Origin Edge: " + e );
@@ -374,7 +374,7 @@ Graph.prototype = {
 
   removeOriginEdge: function( node ) {
       this.ui.removeEdge( node, graph.getOrigin());
-      delete this['originEdges'][node.id];
+      delete this.originEdges[node.id];
   },
 
   // add a node to the graph
@@ -384,13 +384,13 @@ Graph.prototype = {
     var offsety = (Math.random()*100)-50;
 
     // store floats that represent the 'real' position of a node
-    var x =this['frame_width']/2 - offsetx;
-    var y =this['frame_height']/2 - offsety;
+    var x =this.frame_width/2 - offsetx;
+    var y =this.frame_height/2 - offsety;
 
     // create the Node and add it to the collection
-    var i = this['nodes'].length;
+    var i = this.nodes.length;
     var node = new Node( i, mass, x, y );
-    this['nodes'].push(node);
+    this.nodes.push(node);
 
     this['nodesText'][text] = node;
 
@@ -434,7 +434,7 @@ Graph.prototype = {
 
   // get a node by id
   getNode: function( nodeId ) {
-    return this['nodes'][nodeId];
+    return this.nodes[nodeId];
   }
 }
 
@@ -463,23 +463,23 @@ GraphUI.prototype = {
 
   initialize: function( frame, origin, displayOriginEdges, displayEdges ) {
     this['frame']=frame;    // frame dom object
-    this['origin']=origin;  // origin dom object
+    this.origin=origin;  // origin dom object
 
-    this['frame_width']=parseInt(frame.style.width);
-    this['frame_height']=parseInt(frame.style.height);
-    this['frame_top']=parseInt(frame.style.top);
-    this['frame_left']=parseInt(frame.style.left);
+    this.frame_width=parseInt(frame.style.width);
+    this.frame_height=parseInt(frame.style.height);
+    this.frame_top=parseInt(frame.style.top);
+    this.frame_left=parseInt(frame.style.left);
 
     // switch for displaying origin edges
-    this['displayOriginEdges'] = true;
+    this.displayOriginEdges = true;
     if ( displayOriginEdges != null ) {
-      this['displayOriginEdges'] = displayOriginEdges;
+      this.displayOriginEdges = displayOriginEdges;
     }
 
     // switch for displaying non-origin edges
-    this['displayEdges'] = true;
+      this.displayEdges = true;
     if ( displayEdges != null ) {
-      this['displayEdges'] = displayEdges;
+      this.displayEdges = displayEdges;
     }
 
   },
@@ -494,7 +494,7 @@ GraphUI.prototype = {
   // draw all edges
   drawEdges: function() {
     for( var i=0; i<graph.nodes.length; i++ ) {
-      if ( this['displayOriginEdges'] ) {
+      if ( this.displayOriginEdges ) {
         if ( graph.originEdges[i] ) {
           nodeI = graph.getNode(i);
           nodeJ = graph.origin;
@@ -504,7 +504,7 @@ GraphUI.prototype = {
         }
       }
       
-      if ( this['displayEdges'] ) {
+      if ( this.displayEdges ) {
         for( var j=0; j<graph.nodes.length; j++ ) {
           if ( graph.edges[i] && graph.edges[i][j] ) {
             nodeI = graph.getNode(i);
@@ -520,7 +520,7 @@ GraphUI.prototype = {
 
   //
   setOriginText: function( text ) {
-    this['origin'].innerHTML=text;
+    this.origin.innerHTML=text;
   },
 
   nodeRadius: function( node ) {
@@ -531,24 +531,24 @@ GraphUI.prototype = {
   // draw the node at it's current position
   drawNode: function( node ) {
     try {
-      this.getNode(node.id).style.left = (this['frame_left'] + node['position']['x']);
-      this.getNode(node.id).style.top = (this['frame_top'] + node['position']['y']);
+      this.getNode(node.id).style.left = (this.frame_left + node['position']['x']);
+      this.getNode(node.id).style.top = (this.frame_top + node['position']['y']);
     } catch( e ) {
     }
   },
 
   // draw the frame
   drawFrame: function( frame_width, frame_height ) {
-    this['frame_width']=frame_width;
-    this['frame_height']=frame_height;
+    this.frame_width=frame_width;
+    this.frame_height=frame_height;
     this.frame.style.width=frame_width;
     this.frame.style.height=frame_height;
   },
 
   // draw the origin
   drawOrigin: function( node ) {
-    this.origin.style.left = (this['frame_left'] + node['position']['x']);
-    this.origin.style.top = (this['frame_top'] + node['position']['y']);
+    this.origin.style.left = (this.frame_left + node['position']['x']);
+    this.origin.style.top = (this.frame_top + node['position']['y']);
   },
 
   // add an edge to the display
@@ -600,12 +600,12 @@ GraphUI.prototype = {
 
     // edges should appear between center of nodes
     var centeri = new Object();
-    centeri['x'] = this['frame_left'] + nodeI['position']['x'] + this.nodeRadius( nodeI );
-    centeri['y'] = this['frame_top'] + nodeI['position']['y'] + this.nodeRadius( nodeI );
+    centeri['x'] = this.frame_left + nodeI['position']['x'] + this.nodeRadius( nodeI );
+    centeri['y'] = this.frame_top + nodeI['position']['y'] + this.nodeRadius( nodeI );
 
     var centerj = new Object();
-    centerj['x'] = this['frame_left'] + nodeJ['position']['x'] + this.nodeRadius( nodeJ );
-    centerj['y'] = this['frame_top'] + nodeJ['position']['y'] + this.nodeRadius( nodeJ );
+    centerj['x'] = this.frame_left + nodeJ['position']['x'] + this.nodeRadius( nodeJ );
+    centerj['y'] = this.frame_top + nodeJ['position']['y'] + this.nodeRadius( nodeJ );
 
     // get a distance vector between nodes
     var distance = new Distance();

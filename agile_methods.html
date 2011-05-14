@@ -226,9 +226,35 @@ function activePractices() {
     });
 }
 
+function activeValues(practices) {
+    practices = practices || activePractices();
+    var activeValues = [];
 
-function isPracticeActive(m) {
-    var ap = activePractices();
+    for (p in weightings) {
+        var weighting = weightings[p];
+        var practice = weighting[0];
+        if (activeValues.indexOf(weighting[1]) == -1 &&
+                isPracticeActive(practice, practices)) {
+            activeValues.push(weighting[1]);
+        }
+    }
+
+    return activeValues;
+}
+
+Array.prototype.indexOf = function(x) {
+    for (var i = 0; i < this.length; i++) {
+        if (x == this[i]) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+
+function isPracticeActive(m, ap) {
+    var ap = ap || activePractices();
+//    return (ap.indexOf(m) != -1 || ap.indexOf(methods[ap[i]]) != -1 );
     for (var i = 0; i < ap.length; i++) {
         if (m == ap[i] || m == methods[ap[i]]) {
             return true;
@@ -245,7 +271,14 @@ function shouldDrawNode(node) {
         return isPracticeActive(s);
     } else {
 //        console.log(node);
-        return true;
+
+        for (var v in values) {
+            if (node.label == values[v]) {
+                var av = activeValues();
+                return av.indexOf(v) != -1;
+            }
+        }
+        return false;
     }
 }
 
@@ -319,7 +352,7 @@ var frame = (function() {
 })();
 
 var timer = new TimerControl();
-timer.initialize(5);
+timer.initialize(20);
 
 var graphui = new GraphUI();
 graphui.initialize(document.getElementById('frame'),
@@ -335,7 +368,6 @@ timer.subscribe(graph);
 
 var control = new UserControl();
 control.initialize(timer, graph, graphui);
-
 
 
 createMissingNodes();
@@ -362,13 +394,15 @@ $('#controls input').change(function(event) {
                 }
             }
         });
-        eachNode(function(node) {
-//                if (node.node && node.label === s) {
-//                    graph.removeOriginEdge(node.node);
-//                    delete node.node;
-//                }
-        })
     }
+
+    eachNode(function(node) {
+        if (node && node.node) {
+            var elem = graphui.getNode(node.node.id);
+            $(elem).css('opacity', shouldDrawNode(node) ? '1' : '0');
+        }
+    })
+
 });
 
 function updateAddingNecessary() {
