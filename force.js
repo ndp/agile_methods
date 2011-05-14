@@ -647,9 +647,8 @@ textNodeTmpl.style.zIndex = 3;
 textNodeTmpl.style.fontFamily = "sans-serif";
 textNodeTmpl.style.fontSize = "12px";
 textNodeTmpl.style.textAlign = "center";
-textNodeTmpl.style.height = "16px";
+textNodeTmpl.style.height = "26px";
 textNodeTmpl.style.width = "100px";
-textNodeTmpl.style.textAlign = "left";
 
 // Synset Node Template
 var color = new Object();
